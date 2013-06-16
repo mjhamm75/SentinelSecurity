@@ -35,16 +35,16 @@ public class MainActivity extends Activity {
 	private List<Question> createQuestions() {
 		List<Question> questions = new ArrayList<Question>();
 		Question question = new Question();
-		question.setQuestion("What is this 1");
+		question.setQuestion(getResources().getString(R.string.notification_1));
 		questions.add(question);
 		Question question1 = new Question();
-		question1.setQuestion("What is this 2");
+		question1.setQuestion(getResources().getString(R.string.notification_2));
 		questions.add(question1);
 		Question question2 = new Question();
-		question2.setQuestion("What is this 3");
+		question2.setQuestion(getResources().getString(R.string.notification_3));
 		questions.add(question2);
 		Question question3 = new Question();
-		question3.setQuestion("What is this 4");
+		question3.setQuestion(getResources().getString(R.string.monitoring_1));
 		questions.add(question3);		
 		return questions;
 	}
