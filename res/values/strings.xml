@@ -4,5 +4,36 @@
     <string name="app_name">SentinelSecurity</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="notification_1">Building Occupants</string>
+    <string name="notification_2">Building Maintenance</string>
+    <string name="notification_3">Central Station(s)</string>
+    <string name="system_1">Control Panel</string>
+    <string name="system_2">Interface Equipment</string>
+    <string name="system_3">Lamps/LEDS/Fuses</string>
+    <string name="system_4">Primary Power Supply</string>
+    <string name="system_5">Trouble Signals</string>
+    <string name="system_6">Disconnect Switch</string>
+    <string name="system_7">Ground Fault Monitoring</string>
+    <string name="system_8">Battery Condition</string>
+    <string name="system_9">Load Voltage</string>
+    <string name="system_10">Discharge Test</string>
+    <string name="system_11">Charger Test</string>
+    <string name="system_12">Remote Annunciators</string>
+    <string name="system_13">Notification Appliances</string>
+    <string name="system_14">Speakers/Voice Clarity</string>
+    <string name="supervisory_1">Smoke Detectors</string>
+    <string name="supervisory_2">Pull Stations</string>
+    <string name="supervisory_3">Water Flows</string>
+    <string name="supervisory_4">Tampers</string>
+    <string name="supervisory_5">Duct Detectors</string>
+    <string name="supervisory_6">Heat Detectors</string>
+    <string name="supervisory_7">Others</string>
+    <string name="monitoring_1">Alarm Signal/Restore</string>
+    <string name="monitoring_2">Trouble Signal/Restore</string>
+    <string name="monitoring_3">Supervisory Signal/Restore</string>
+    <string name="notification_resume_1">Building Occupants</string>
+    <string name="notification_resume_2">Building Maintenance</string>
+    <string name="notification_resume_3">Central Station(s)</string>
+    
 
 </resources>
