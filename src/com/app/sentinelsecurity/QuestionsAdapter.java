@@ -8,26 +8,61 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.Toast;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
 
 import com.app.sentinelsecurity.domain.Question;
 
 public class QuestionsAdapter extends ArrayAdapter<Question> {
-	List<Question> questions = new ArrayList<Question>();
 	Context context;
+	List<Question> questions = new ArrayList<Question>();
 
-	public QuestionsAdapter(Context context, int textViewResourceId, List<Question> questions) {
-		super(context, textViewResourceId, questions);
+	public QuestionsAdapter(Context context, List<Question> questions) {
+		super(context, R.layout.row_questions, questions);
 		this.questions = questions;
 		this.context = context;
 	}
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View rowView = inflater.inflate(R.layout.row_questions, parent, false);
-		TextView question = (TextView)rowView.findViewById(R.id.question);
-		question.setText(questions.get(position).getQuestion());
-		return rowView;
+		View row = convertView;
+		QuestionHolder holder = null;
+
+		if (row == null) {
+			LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			row = inflater.inflate(R.layout.row_questions, parent, false);
+			holder = new QuestionHolder();
+			holder.question = (TextView) row.findViewById(R.id.question);
+			holder.yes = (CheckBox) row.findViewById(R.id.yes);
+			holder.no = (CheckBox) row.findViewById(R.id.no);
+			row.setTag(holder);
+		} else {
+			holder = (QuestionHolder)row.getTag();
+		}
+		Question question = questions.get(position);
+		holder.question.setText(question.getQuestion());
+		holder.yes.setOnCheckedChangeListener(new OnCheckedChangeListener() {			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				Toast.makeText(context, "YES", Toast.LENGTH_SHORT).show();
+			}
+		});
+
+		holder.no.setOnCheckedChangeListener(new OnCheckedChangeListener() {			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				Toast.makeText(context, "NO", Toast.LENGTH_SHORT).show();
+			}
+		});
+		return row;
+	}
+
+	static class QuestionHolder {
+		TextView question;
+		CheckBox yes;
+		CheckBox no;
 	}
 }

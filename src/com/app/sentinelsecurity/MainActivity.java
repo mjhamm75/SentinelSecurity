@@ -3,27 +3,34 @@ package com.app.sentinelsecurity;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.app.sentinelsecurity.domain.Question;
 
-public class MainActivity extends Activity {
+public class MainActivity extends ListActivity {
 	QuestionsAdapter adapter;
 	Context context = this;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		List<Question> questions = createQuestions();
-		adapter = new QuestionsAdapter(context, R.layout.row_questions, questions);
-		ListView questionsList = (ListView)findViewById(R.id.questions);
-		questionsList.setAdapter(adapter);
+		setListAdapter(new QuestionsAdapter(context, createQuestions()));
 	}
+	
+	
+
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		Toast.makeText(context, "HERE", Toast.LENGTH_SHORT).show();
+	}
+
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -31,7 +38,7 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-	
+
 	private List<Question> createQuestions() {
 		List<Question> questions = new ArrayList<Question>();
 		Question question = new Question();
@@ -45,7 +52,7 @@ public class MainActivity extends Activity {
 		questions.add(question2);
 		Question question3 = new Question();
 		question3.setQuestion(getResources().getString(R.string.monitoring_1));
-		questions.add(question3);		
+		questions.add(question3);
 		return questions;
 	}
 
