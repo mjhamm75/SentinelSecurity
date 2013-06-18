@@ -34,6 +34,8 @@
     <string name="notification_resume_1">Building Occupants</string>
     <string name="notification_resume_2">Building Maintenance</string>
     <string name="notification_resume_3">Central Station(s)</string>
-    
+    <!--  -->
+    <string name="back">Back</string>
+    <string name="next">Next</string>
 
 </resources>
