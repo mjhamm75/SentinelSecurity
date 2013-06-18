@@ -3,7 +3,6 @@
 
     <string name="app_name">SentinelSecurity</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
     <string name="notification_1">Building Occupants</string>
     <string name="notification_2">Building Maintenance</string>
     <string name="notification_3">Central Station(s)</string>

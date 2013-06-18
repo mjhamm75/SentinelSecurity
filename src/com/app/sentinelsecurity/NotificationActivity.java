@@ -22,12 +22,12 @@ public class NotificationActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		questions = createQuestions();
-		setContentView(R.layout.activity_notification);
+		setContentView(R.layout.activity_questions);
 
 		adapter = new QuestionsAdapter(context, questions);
 		ListView notifications = (ListView) findViewById(R.id.list_notification);
 
-		Button next = (Button) findViewById(R.id.button_notification_next);
+		Button next = (Button) findViewById(R.id.button_next);
 		next.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -36,10 +36,11 @@ public class NotificationActivity extends Activity {
 			}
 		});
 
-		Button back = (Button) findViewById(R.id.button_notification_back);
+		Button back = (Button) findViewById(R.id.button_back);
 		back.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				NotificationActivity.this.finish();
 			}
 		});
 		
