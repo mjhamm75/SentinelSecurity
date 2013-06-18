@@ -24,8 +24,8 @@ public class NotificationResumeActivity extends Activity {
 		setContentView(R.layout.activity_questions);
 
 		adapter = new QuestionsAdapter(context, questions);
-		ListView notifications = (ListView) findViewById(R.id.list_notification);
-		notifications.setAdapter(adapter);
+		ListView notificationResumeItems = (ListView) findViewById(R.id.list_notification);
+		notificationResumeItems.setAdapter(adapter);
 
 		Button next = (Button) findViewById(R.id.button_next);
 		next.setOnClickListener(new View.OnClickListener() {

@@ -25,8 +25,8 @@ public class SupervisoryActivity extends Activity {
 		setContentView(R.layout.activity_questions);
 
 		adapter = new QuestionsAdapter(context, questions);
-		ListView notifications = (ListView) findViewById(R.id.list_notification);
-		notifications.setAdapter(adapter);
+		ListView supervisoryItems = (ListView) findViewById(R.id.list_notification);
+		supervisoryItems.setAdapter(adapter);
 		
 		Button next = (Button)findViewById(R.id.button_next);
 		next.setOnClickListener(new View.OnClickListener() {
