@@ -22,6 +22,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".NotificationActivity"></activity>
+        <activity android:name=".NotificationResumeActivity"></activity>
+        <activity android:name=".SystemActivity"></activity>
+        <activity android:name=".MonitoringActivity"></activity>
+        <activity android:name=".SupervisoryActivity"></activity>
     </application>
 
 </manifest>

@@ -13,7 +13,7 @@ import android.widget.ListView;
 
 import com.app.sentinelsecurity.domain.Question;
 
-public class NotificationActivity extends Activity {
+public class MonitoringActivity extends Activity {
 	Context context = this;
 	QuestionsAdapter adapter;
 	List<Question> questions;
@@ -26,36 +26,36 @@ public class NotificationActivity extends Activity {
 
 		adapter = new QuestionsAdapter(context, questions);
 		ListView notifications = (ListView) findViewById(R.id.list_notification);
+		notifications.setAdapter(adapter);
 
 		Button next = (Button) findViewById(R.id.button_notification_next);
 		next.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(NotificationActivity.this, SystemActivity.class);
+				Intent intent = new Intent(MonitoringActivity.this, NotificationResumeActivity.class);
 				startActivity(intent);
 			}
 		});
 
-		Button back = (Button) findViewById(R.id.button_notification_back);
-		back.setOnClickListener(new View.OnClickListener() {
+		Button cancel = (Button) findViewById(R.id.button_notification_back);
+		cancel.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+
 			}
 		});
-		
-		notifications.setAdapter(adapter);
 	}
 
 	private List<Question> createQuestions() {
 		List<Question> questions = new ArrayList<Question>();
 		Question question1 = new Question();
-		question1.setQuestion(getResources().getString(R.string.notification_1));
+		question1.setQuestion(getResources().getString(R.string.monitoring_1));
 		questions.add(question1);
 		Question question2 = new Question();
-		question2.setQuestion(getResources().getString(R.string.notification_2));
+		question2.setQuestion(getResources().getString(R.string.monitoring_2));
 		questions.add(question2);
 		Question question3 = new Question();
-		question3.setQuestion(getResources().getString(R.string.notification_3));
+		question3.setQuestion(getResources().getString(R.string.monitoring_3));
 		questions.add(question3);
 		return questions;
 	}
