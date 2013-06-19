@@ -19,8 +19,8 @@ public abstract class ListActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_questions);
-		ListView notificationItems = (ListView) findViewById(R.id.list_notification);
-		notificationItems.setAdapter(new QuestionsAdapter(getCurrentContext(), getQuestions()));
+		ListView items = (ListView) findViewById(R.id.items);
+		items.setAdapter(new QuestionsAdapter(getCurrentContext(), getQuestions()));
 
 		Button next = (Button) findViewById(R.id.button_next);
 		next.setOnClickListener(new View.OnClickListener() {
