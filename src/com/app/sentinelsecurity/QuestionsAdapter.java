@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.Toast;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
 
@@ -57,7 +58,6 @@ public class QuestionsAdapter extends ArrayAdapter<Question> implements OnChecke
 
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-		// TODO Auto-generated method stub
-		
+		Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show();
 	}
 }
