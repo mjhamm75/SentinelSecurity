@@ -7,8 +7,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.app.sentinelsecurity.domain.Question;
 
@@ -38,6 +40,15 @@ public abstract class ListActivity extends Activity {
 				((Activity) getActivity()).finish();
 			}
 		});
+
+		items.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				final Question item = (Question) parent.getItemAtPosition(position);
+				Toast.makeText(getActivity(), item.getQuestion(), Toast.LENGTH_SHORT).show();
+			}
+		});
 	}
 
 	protected abstract Class<?> getNextClass();
@@ -49,4 +60,5 @@ public abstract class ListActivity extends Activity {
 	protected abstract List<Question> createQuestions();
 
 	protected abstract Context getCurrentContext();
+
 }

@@ -87,5 +87,4 @@ public class SystemActivity extends ListActivity {
 	protected Context getCurrentContext() {
 		return context;
 	}
-
 }

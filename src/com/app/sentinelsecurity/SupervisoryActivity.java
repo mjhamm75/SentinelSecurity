@@ -66,5 +66,4 @@ public class SupervisoryActivity extends ListActivity {
 	protected Context getCurrentContext() {
 		return context;
 	}
-
 }

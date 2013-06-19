@@ -55,5 +55,4 @@ public class NotificationActivity extends ListActivity {
 	protected Context getCurrentContext() {
 		return context;
 	}
-
 }
