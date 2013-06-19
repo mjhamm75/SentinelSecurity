@@ -3,50 +3,22 @@ package com.app.sentinelsecurity;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ListView;
 
 import com.app.sentinelsecurity.domain.Question;
 
-public class SupervisoryActivity extends Activity {
+public class SupervisoryActivity extends ListActivity {
 	Context context = this;
-	QuestionsAdapter adapter;
 	List<Question> questions;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		questions = createQuestions();
-		setContentView(R.layout.activity_questions);
-
-		adapter = new QuestionsAdapter(context, questions);
-		ListView supervisoryItems = (ListView) findViewById(R.id.list_notification);
-		supervisoryItems.setAdapter(adapter);
-		
-		Button next = (Button)findViewById(R.id.button_next);
-		next.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(SupervisoryActivity.this, MonitoringActivity.class);
-				startActivity(intent);
-			}
-		});
-
-		Button cancel = (Button)findViewById(R.id.button_back);
-		cancel.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				SupervisoryActivity.this.finish();				
-			}
-		});
 	}
 
-	private List<Question> createQuestions() {
+	@Override
+	protected List<Question> createQuestions() {
 		List<Question> questions = new ArrayList<Question>();
 		Question question1 = new Question();
 		question1.setQuestion(getResources().getString(R.string.supervisory_1));
@@ -70,6 +42,29 @@ public class SupervisoryActivity extends Activity {
 		question7.setQuestion(getResources().getString(R.string.supervisory_7));
 		questions.add(question7);
 		return questions;
+	}
+
+	@Override
+	protected Class<?> getNextClass() {
+		return MonitoringActivity.class;
+	}
+
+	@Override
+	protected Context getActivity() {
+		return SupervisoryActivity.this;
+	}
+
+	@Override
+	protected List<Question> getQuestions() {
+		if (questions == null) {
+			questions = createQuestions();
+		}
+		return questions;
+	}
+
+	@Override
+	protected Context getCurrentContext() {
+		return context;
 	}
 
 }
