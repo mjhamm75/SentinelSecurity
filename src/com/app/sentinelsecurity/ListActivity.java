@@ -44,11 +44,9 @@ public abstract class ListActivity extends Activity {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				// final Question item = (Question)
-				// parent.getItemAtPosition(position);
+				final Question item = (Question) parent.getItemAtPosition(position);
 				Intent i = new Intent(getApplicationContext(), SingleQuestionActivity.class);
-				// sending data to new activity
-				// i.putExtra("product", product);
+				 i.putExtra("question", item.getQuestion());
 				startActivity(i);
 			}
 		});

@@ -36,5 +36,6 @@
     <!--  -->
     <string name="back">Back</string>
     <string name="next">Next</string>
+    <string name="comment">Enter comment about question here</string>
 
 </resources>
