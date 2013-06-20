@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SingleQuestionActivity extends Activity {
 	@Override
@@ -21,9 +23,17 @@ public class SingleQuestionActivity extends Activity {
 			}
 		});
 
-		 Intent i = getIntent();
-		 TextView question = (TextView)findViewById(R.id.question);
-		 question.setText(i.getStringExtra("question"));
+		ImageButton voice = (ImageButton) findViewById(R.id.button_voice);
+		voice.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Toast.makeText(SingleQuestionActivity.this, "VOICE", Toast.LENGTH_SHORT).show();
+			}
+		});
+
+		Intent i = getIntent();
+		TextView question = (TextView) findViewById(R.id.question);
+		question.setText(i.getStringExtra("question"));
 	}
 
 }
