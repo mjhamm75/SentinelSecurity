@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.app.sentinelsecurity.domain.Question;
 
@@ -45,8 +44,12 @@ public abstract class ListActivity extends Activity {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				final Question item = (Question) parent.getItemAtPosition(position);
-				Toast.makeText(getActivity(), item.getQuestion(), Toast.LENGTH_SHORT).show();
+				// final Question item = (Question)
+				// parent.getItemAtPosition(position);
+				Intent i = new Intent(getApplicationContext(), SingleQuestionActivity.class);
+				// sending data to new activity
+				// i.putExtra("product", product);
+				startActivity(i);
 			}
 		});
 	}

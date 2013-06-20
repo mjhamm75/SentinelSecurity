@@ -27,6 +27,7 @@
         <activity android:name=".SystemActivity"></activity>
         <activity android:name=".MonitoringActivity"></activity>
         <activity android:name=".SupervisoryActivity"></activity>
+        <activity android:name=".SingleQuestionActivity"></activity>
     </application>
 
 </manifest>
