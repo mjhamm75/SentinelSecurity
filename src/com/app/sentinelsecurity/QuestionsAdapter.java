@@ -10,7 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+<<<<<<< HEAD
 import android.widget.LinearLayout;
+=======
+>>>>>>> 11d151d26057b5092ffbb3e97025533d4d41d482
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,12 +57,16 @@ public class QuestionsAdapter extends ArrayAdapter<Question> {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				final int position = list.getPositionForView(buttonView);
+<<<<<<< HEAD
 				LinearLayout l = (LinearLayout) buttonView.getParent();
 				CheckBox c1 = (CheckBox) l.getChildAt(0);
 				CheckBox c2 = (CheckBox) l.getChildAt(1);
 				if (isChecked) {
 					c2.setChecked(false);
 				}
+=======
+				Toast.makeText(context, String.valueOf(position), Toast.LENGTH_SHORT).show();
+>>>>>>> 11d151d26057b5092ffbb3e97025533d4d41d482
 			}
 		});
 		holder.no.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -67,12 +74,16 @@ public class QuestionsAdapter extends ArrayAdapter<Question> {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				final int position = list.getPositionForView(buttonView);
+<<<<<<< HEAD
 				LinearLayout l = (LinearLayout) buttonView.getParent();
 				CheckBox c1 = (CheckBox) l.getChildAt(0);
 				CheckBox c2 = (CheckBox) l.getChildAt(1);
 				if (isChecked) {
 					c1.setChecked(false);
 				}
+=======
+				Toast.makeText(context, String.valueOf(position), Toast.LENGTH_SHORT).show();
+>>>>>>> 11d151d26057b5092ffbb3e97025533d4d41d482
 			}
 		});
 		return row;
