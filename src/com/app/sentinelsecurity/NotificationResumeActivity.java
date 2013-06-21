@@ -54,4 +54,9 @@ public class NotificationResumeActivity extends ListActivity {
 	protected Context getCurrentContext() {
 		return context;
 	}
+
+	@Override
+	protected String getHeaderTitle() {
+		return "Notifications Resume";
+	}
 }

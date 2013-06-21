@@ -87,4 +87,9 @@ public class SystemActivity extends ListActivity {
 	protected Context getCurrentContext() {
 		return context;
 	}
+
+	@Override
+	protected String getHeaderTitle() {
+		return "System";
+	}
 }

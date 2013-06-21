@@ -32,7 +32,7 @@ public class NotificationActivity extends ListActivity {
 		questions.add(question3);
 		return questions;
 	}
-	
+
 	@Override
 	protected Class<?> getNextClass() {
 		return SystemActivity.class;
@@ -54,5 +54,10 @@ public class NotificationActivity extends ListActivity {
 	@Override
 	protected Context getCurrentContext() {
 		return context;
+	}
+
+	@Override
+	protected String getHeaderTitle() {
+		return "Notifications";
 	}
 }

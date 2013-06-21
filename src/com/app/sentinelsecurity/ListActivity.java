@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.app.sentinelsecurity.domain.Question;
 
@@ -21,6 +22,10 @@ public abstract class ListActivity extends Activity {
 
 		setContentView(R.layout.activity_questions);
 		ListView items = (ListView) findViewById(R.id.items);
+		View headerView = getLayoutInflater().inflate(R.layout.activity_questions_header, null);
+		TextView header = (TextView) headerView.findViewById(R.id.header);
+		header.setText(getHeaderTitle());
+		items.addHeaderView(headerView);
 		items.setAdapter(new QuestionsAdapter(getCurrentContext(), getQuestions()));
 
 		Button next = (Button) findViewById(R.id.button_next);
@@ -46,7 +51,7 @@ public abstract class ListActivity extends Activity {
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				final Question item = (Question) parent.getItemAtPosition(position);
 				Intent i = new Intent(getApplicationContext(), SingleQuestionActivity.class);
-				 i.putExtra("question", item.getQuestion());
+				i.putExtra("question", item.getQuestion());
 				startActivity(i);
 			}
 		});
@@ -61,5 +66,7 @@ public abstract class ListActivity extends Activity {
 	protected abstract List<Question> createQuestions();
 
 	protected abstract Context getCurrentContext();
+	
+	protected abstract String getHeaderTitle();
 
 }
