@@ -33,6 +33,7 @@
                 android:id="@+id/no_single"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:button="@xml/custom_checkbox"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
                 android:gravity="center_vertical" />
@@ -58,13 +59,12 @@
             android:layout_weight="1"
             android:text="@string/back" >
         </Button>
-        
-        <ImageButton 
+
+        <ImageButton
             android:id="@+id/button_voice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/micro"
-            />
+            android:src="@drawable/micro" />
     </LinearLayout>
 
 </LinearLayout>

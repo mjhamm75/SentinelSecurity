@@ -32,7 +32,9 @@
             android:layout_height="wrap_content"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:gravity="center_vertical" />
+            android:gravity="center_vertical" 
+            android:button="@xml/custom_checkbox"
+            />
     </LinearLayout>
 
 </LinearLayout>
