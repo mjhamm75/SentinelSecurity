@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,7 +54,12 @@ public class QuestionsAdapter extends ArrayAdapter<Question> {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				final int position = list.getPositionForView(buttonView);
-				Toast.makeText(context, String.valueOf(position), Toast.LENGTH_SHORT).show();
+				LinearLayout l = (LinearLayout) buttonView.getParent();
+				CheckBox c1 = (CheckBox) l.getChildAt(0);
+				CheckBox c2 = (CheckBox) l.getChildAt(1);
+				if (isChecked) {
+					c2.setChecked(false);
+				}
 			}
 		});
 		holder.no.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -61,7 +67,12 @@ public class QuestionsAdapter extends ArrayAdapter<Question> {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				final int position = list.getPositionForView(buttonView);
-				Toast.makeText(context, String.valueOf(position), Toast.LENGTH_SHORT).show();
+				LinearLayout l = (LinearLayout) buttonView.getParent();
+				CheckBox c1 = (CheckBox) l.getChildAt(0);
+				CheckBox c2 = (CheckBox) l.getChildAt(1);
+				if (isChecked) {
+					c1.setChecked(false);
+				}
 			}
 		});
 		return row;
