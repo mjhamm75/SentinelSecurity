@@ -10,26 +10,28 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.sentinelsecurity.domain.Question;
 
-public class QuestionsAdapter extends ArrayAdapter<Question> implements OnCheckedChangeListener{
+public class QuestionsAdapter extends ArrayAdapter<Question> {
 	Context context;
 	List<Question> questions = new ArrayList<Question>();
+	QuestionHolder holder = null;
+	ListView list;
 
-	public QuestionsAdapter(Context context, List<Question> questions) {
+	public QuestionsAdapter(ListActivity activity, Context context, List<Question> questions) {
 		super(context, R.layout.row_questions, questions);
 		this.questions = questions;
 		this.context = context;
+		list = activity.getListView();
 	}
 
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(int position, final View convertView, ViewGroup parent) {
 		View row = convertView;
-		QuestionHolder holder = null;
 
 		if (row == null) {
 			LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -44,8 +46,24 @@ public class QuestionsAdapter extends ArrayAdapter<Question> implements OnChecke
 		}
 		Question question = questions.get(position);
 		holder.question.setText(question.getQuestion());
-		holder.no.setOnCheckedChangeListener(this);
-		holder.yes.setOnCheckedChangeListener(this);
+		holder.yes.setTag(getItem(position));
+		holder.no.setTag(getItem(position));
+		holder.yes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				final int position = list.getPositionForView(buttonView);
+				Toast.makeText(context, String.valueOf(position), Toast.LENGTH_SHORT).show();
+			}
+		});
+		holder.no.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				final int position = list.getPositionForView(buttonView);
+				Toast.makeText(context, String.valueOf(position), Toast.LENGTH_SHORT).show();
+			}
+		});
 		return row;
 	}
 
@@ -55,8 +73,13 @@ public class QuestionsAdapter extends ArrayAdapter<Question> implements OnChecke
 		CheckBox no;
 	}
 
-	@Override
-	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-		Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show();
-	}
+	// @Override
+	// public void onCheckedChanged(CompoundButton buttonView, boolean
+	// isChecked) {
+	//
+	// LinearLayout l = (LinearLayout) buttonView.getParent();
+	// CheckBox c1 = (CheckBox) l.getChildAt(0);
+	// CheckBox c2 = (CheckBox) l.getChildAt(1);
+	//
+	// }
 }

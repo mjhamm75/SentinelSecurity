@@ -60,4 +60,9 @@ public class NotificationActivity extends ListActivity {
 	protected String getHeaderTitle() {
 		return "Notifications";
 	}
+
+	@Override
+	protected Activity getCurrentActivity() {
+		return this;
+	}
 }

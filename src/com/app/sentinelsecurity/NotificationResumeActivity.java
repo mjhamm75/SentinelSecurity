@@ -3,6 +3,7 @@ package com.app.sentinelsecurity;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -58,5 +59,10 @@ public class NotificationResumeActivity extends ListActivity {
 	@Override
 	protected String getHeaderTitle() {
 		return "Notifications Resume";
+	}
+
+	@Override
+	protected Activity getCurrentActivity() {
+		return this;
 	}
 }

@@ -15,18 +15,19 @@ import android.widget.TextView;
 import com.app.sentinelsecurity.domain.Question;
 
 public abstract class ListActivity extends Activity {
+	ListView items;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_questions);
-		ListView items = (ListView) findViewById(R.id.items);
+		items = (ListView) findViewById(R.id.items);
 		View headerView = getLayoutInflater().inflate(R.layout.activity_questions_header, null);
 		TextView header = (TextView) headerView.findViewById(R.id.header);
 		header.setText(getHeaderTitle());
 		items.addHeaderView(headerView);
-		items.setAdapter(new QuestionsAdapter(getCurrentContext(), getQuestions()));
+		items.setAdapter(new QuestionsAdapter(this, getCurrentContext(), getQuestions()));
 
 		Button next = (Button) findViewById(R.id.button_next);
 		next.setOnClickListener(new View.OnClickListener() {
@@ -61,12 +62,17 @@ public abstract class ListActivity extends Activity {
 
 	protected abstract Context getActivity();
 
+	protected abstract Activity getCurrentActivity();
+
 	protected abstract List<Question> getQuestions();
 
 	protected abstract List<Question> createQuestions();
 
 	protected abstract Context getCurrentContext();
-	
+
 	protected abstract String getHeaderTitle();
 
+	protected ListView getListView() {
+		return items;
+	}
 }

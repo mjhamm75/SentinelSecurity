@@ -3,6 +3,7 @@ package com.app.sentinelsecurity;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -91,5 +92,10 @@ public class SystemActivity extends ListActivity {
 	@Override
 	protected String getHeaderTitle() {
 		return "System";
+	}
+
+	@Override
+	protected Activity getCurrentActivity() {
+		return this;
 	}
 }
