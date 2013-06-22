@@ -6,7 +6,7 @@ public class Question {
 	String comment;
 
 	public Question() {
-
+		isChecked = false;
 	}
 
 	public Question(String question, Boolean isChecked, String comment) {
