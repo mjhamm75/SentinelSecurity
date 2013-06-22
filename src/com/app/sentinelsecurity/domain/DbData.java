@@ -11,7 +11,7 @@ import android.provider.BaseColumns;
 
 public class DbData {
 	public static final String DB_NAME = "sentinel_security";
-	public static final int DB_VERSION = 1;
+	public static final int DB_VERSION = 2;
 
 	public static final String TABLE_QUESTION = "question";
 	public static final String Q_ID = BaseColumns._ID;
@@ -72,20 +72,52 @@ public class DbData {
 		// dbHelper.onUpgrade(db, 1, 2);
 	}
 
-	public void createQuestion(Question question) {
+	public Long createQuestion() {
 		db = dbHelper.getWritableDatabase();
 		ContentValues values = new ContentValues();
-		db.insert(TABLE_QUESTION, null, values);
+		values.put(Q_NOTIFY_1, "0");
+		values.put(Q_NOTIFY_2, "0");
+		values.put(Q_NOTIFY_3, "0");
+		values.put(Q_SYSTEM_1, "0");
+		values.put(Q_SYSTEM_2, "0");
+		values.put(Q_SYSTEM_3, "0");
+		values.put(Q_SYSTEM_4, "0");
+		values.put(Q_SYSTEM_5, "0");
+		values.put(Q_SYSTEM_6, "0");
+		values.put(Q_SYSTEM_7, "0");
+		values.put(Q_SYSTEM_8, "0");
+		values.put(Q_SYSTEM_9, "0");
+		values.put(Q_SYSTEM_10, "0");
+		values.put(Q_SYSTEM_11, "0");
+		values.put(Q_SYSTEM_12, "0");
+		values.put(Q_SYSTEM_13, "0");
+		values.put(Q_SYSTEM_14, "0");
+		values.put(Q_SUPERVISORY_1, "0");
+		values.put(Q_SUPERVISORY_2, "0");
+		values.put(Q_SUPERVISORY_3, "0");
+		values.put(Q_SUPERVISORY_4, "0");
+		values.put(Q_SUPERVISORY_5, "0");
+		values.put(Q_SUPERVISORY_6, "0");
+		values.put(Q_SUPERVISORY_7, "0");
+		values.put(Q_MONITORING_1, "0");
+		values.put(Q_MONITORING_2, "0");
+		values.put(Q_MONITORING_3, "0");
+		values.put(Q_NOTIFICATION_RESUME_1, "0");
+		values.put(Q_NOTIFICATION_RESUME_2, "0");
+		values.put(Q_NOTIFICATION_RESUME_3, "0");
+		
+		Long id = db.insert(TABLE_QUESTION, null, values);
 		closeDb();
+		return id;
 	}
 
-	public void updateQuestion(Map<String, String> question) {
+	public void updateQuestion(Map<String, String> question, Long id) {
 		db = dbHelper.getWritableDatabase();
 		ContentValues values = new ContentValues();
 
 		addContentValue("", "", values);
 
-		db.update(TABLE_QUESTION, values, BaseColumns._ID + "= 1", null);
+		db.update(TABLE_QUESTION, values, BaseColumns._ID + "=" + id, null);
 		closeDb();
 	}
 
@@ -102,10 +134,13 @@ public class DbData {
 			String key = entry.getKey();
 			Question question = entry.getValue();
 
-			values = new ContentValues();
-			values.put(key, question.getIsChecked() ? 1 : 0);
+			if (key != null && question.getIsChecked() != null) {
 
-			db.insert(TABLE_QUESTION, null, values);
+				values = new ContentValues();
+				values.put(key, question.getIsChecked() ? 1 : 0);
+
+				db.insert(TABLE_QUESTION, null, values);
+			}
 		}
 		this.closeDb();
 	}

@@ -28,6 +28,7 @@ public abstract class ListActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		dbData = new DbData(this);
+		dbData.createQuestion();
 		questions = getQuestions();
 
 		setContentView(R.layout.activity_questions);
@@ -109,7 +110,7 @@ public abstract class ListActivity extends Activity {
 			questionsMap.put(questionDbName, question);
 		}
 
-		// dbData.insertQuestions(questionsMap);
+		//dbData.insertQuestions(questionsMap);
 
 		return questions;
 	}

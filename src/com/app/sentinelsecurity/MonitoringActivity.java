@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
+import com.app.sentinelsecurity.domain.DbData;
 import com.app.sentinelsecurity.domain.Question;
 
 public class MonitoringActivity extends ListActivity {
@@ -22,9 +23,9 @@ public class MonitoringActivity extends ListActivity {
 	@Override
 	protected Map<Integer, String> getQuestionsMap() {
 		Map<Integer, String> questions = new HashMap<Integer, String>();
-		questions.put(R.string.monitoring_1, "Q_MONITORING_1");
-		questions.put(R.string.monitoring_2, "Q_MONITORING_2");
-		questions.put(R.string.monitoring_3, "Q_MONITORING_3");
+		questions.put(R.string.monitoring_1, DbData.Q_MONITORING_1);
+		questions.put(R.string.monitoring_2, DbData.Q_MONITORING_2);
+		questions.put(R.string.monitoring_3, DbData.Q_MONITORING_3);
 		return questions;
 	}
 

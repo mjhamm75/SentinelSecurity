@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
+import com.app.sentinelsecurity.domain.DbData;
 import com.app.sentinelsecurity.domain.Question;
 
 public class SystemActivity extends ListActivity {
@@ -22,20 +23,20 @@ public class SystemActivity extends ListActivity {
 	@Override
 	protected Map<Integer, String> getQuestionsMap() {
 		Map<Integer, String> questions = new HashMap<Integer, String>();
-		questions.put(R.string.system_1, "Q_SYSTEM_1");
-		questions.put(R.string.system_2, "Q_SYSTEM_2");
-		questions.put(R.string.system_3, "Q_SYSTEM_3");
-		questions.put(R.string.system_4, "Q_SYSTEM_4");
-		questions.put(R.string.system_5, "Q_SYSTEM_5");
-		questions.put(R.string.system_6, "Q_SYSTEM_6");
-		questions.put(R.string.system_7, "Q_SYSTEM_7");
-		questions.put(R.string.system_8, "Q_SYSTEM_8");
-		questions.put(R.string.system_9, "Q_SYSTEM_9");
-		questions.put(R.string.system_10, "Q_SYSTEM_10");
-		questions.put(R.string.system_11, "Q_SYSTEM_11");
-		questions.put(R.string.system_12, "Q_SYSTEM_12");
-		questions.put(R.string.system_13, "Q_SYSTEM_13");
-		questions.put(R.string.system_14, "Q_SYSTEM_14");
+		questions.put(R.string.system_1, DbData.Q_SYSTEM_1);
+		questions.put(R.string.system_2, DbData.Q_SYSTEM_2);
+		questions.put(R.string.system_3, DbData.Q_SYSTEM_3);
+		questions.put(R.string.system_4, DbData.Q_SYSTEM_4);
+		questions.put(R.string.system_5, DbData.Q_SYSTEM_5);
+		questions.put(R.string.system_6, DbData.Q_SYSTEM_6);
+		questions.put(R.string.system_7, DbData.Q_SYSTEM_7);
+		questions.put(R.string.system_8, DbData.Q_SYSTEM_8);
+		questions.put(R.string.system_9, DbData.Q_SYSTEM_9);
+		questions.put(R.string.system_10, DbData.Q_SYSTEM_10);
+		questions.put(R.string.system_11, DbData.Q_SYSTEM_11);
+		questions.put(R.string.system_12, DbData.Q_SYSTEM_12);
+		questions.put(R.string.system_13, DbData.Q_SYSTEM_13);
+		questions.put(R.string.system_14, DbData.Q_SYSTEM_14);
 		return questions;
 	}
 

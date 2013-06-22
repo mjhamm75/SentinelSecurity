@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
+import com.app.sentinelsecurity.domain.DbData;
 import com.app.sentinelsecurity.domain.Question;
 
 public class NotificationActivity extends ListActivity {
@@ -47,9 +48,9 @@ public class NotificationActivity extends ListActivity {
 	@Override
 	protected Map<Integer, String> getQuestionsMap() {
 		Map<Integer, String> questions = new HashMap<Integer, String>();
-		questions.put(R.string.notification_1, "Q_NOTIFY_1");
-		questions.put(R.string.notification_2, "Q_NOTIFY_2");
-		questions.put(R.string.notification_3, "Q_NOTIFY_3");
+		questions.put(R.string.notification_1, DbData.Q_NOTIFY_1);
+		questions.put(R.string.notification_2, DbData.Q_NOTIFY_2);
+		questions.put(R.string.notification_3, DbData.Q_NOTIFY_3);
 		return questions;
 	}
 }

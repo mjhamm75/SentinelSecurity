@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
+import com.app.sentinelsecurity.domain.DbData;
 import com.app.sentinelsecurity.domain.Question;
 
 public class SupervisoryActivity extends ListActivity {
@@ -22,13 +23,13 @@ public class SupervisoryActivity extends ListActivity {
 	@Override
 	protected Map<Integer, String> getQuestionsMap() {
 		Map<Integer, String> questions = new HashMap<Integer, String>();
-		questions.put(R.string.supervisory_1, "Q_SUPERVISORY_1");
-		questions.put(R.string.supervisory_2, "Q_SUPERVISORY_2");
-		questions.put(R.string.supervisory_3, "Q_SUPERVISORY_3");
-		questions.put(R.string.supervisory_4, "Q_SUPERVISORY_4");
-		questions.put(R.string.supervisory_5, "Q_SUPERVISORY_5");
-		questions.put(R.string.supervisory_6, "Q_SUPERVISORY_6");
-		questions.put(R.string.supervisory_7, "Q_SUPERVISORY_7");
+		questions.put(R.string.supervisory_1, DbData.Q_SUPERVISORY_1);
+		questions.put(R.string.supervisory_2, DbData.Q_SUPERVISORY_2);
+		questions.put(R.string.supervisory_3, DbData.Q_SUPERVISORY_3);
+		questions.put(R.string.supervisory_4, DbData.Q_SUPERVISORY_4);
+		questions.put(R.string.supervisory_5, DbData.Q_SUPERVISORY_5);
+		questions.put(R.string.supervisory_6, DbData.Q_SUPERVISORY_6);
+		questions.put(R.string.supervisory_7, DbData.Q_SUPERVISORY_7);
 		return questions;
 	}
 
