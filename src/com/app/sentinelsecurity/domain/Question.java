@@ -8,6 +8,11 @@ public class Question {
 	public Question() {
 		isChecked = false;
 	}
+	
+	public Question(String question) {
+		this.question = question;
+		isChecked = false;
+	}
 
 	public Question(String question, Boolean isChecked, String comment) {
 		super();

@@ -1,7 +1,8 @@
 package com.app.sentinelsecurity;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import android.app.Activity;
 import android.content.Context;
@@ -19,17 +20,11 @@ public class MonitoringActivity extends ListActivity {
 	}
 
 	@Override
-	protected List<Question> createQuestions() {
-		List<Question> questions = new ArrayList<Question>();
-		Question question1 = new Question();
-		question1.setQuestion(getResources().getString(R.string.monitoring_1));
-		questions.add(question1);
-		Question question2 = new Question();
-		question2.setQuestion(getResources().getString(R.string.monitoring_2));
-		questions.add(question2);
-		Question question3 = new Question();
-		question3.setQuestion(getResources().getString(R.string.monitoring_3));
-		questions.add(question3);
+	protected Map<Integer, String> getQuestionsMap() {
+		Map<Integer, String> questions = new HashMap<Integer, String>();
+		questions.put(R.string.monitoring_1, "Q_MONITORING_1");
+		questions.put(R.string.monitoring_2, "Q_MONITORING_2");
+		questions.put(R.string.monitoring_3, "Q_MONITORING_3");
 		return questions;
 	}
 

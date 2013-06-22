@@ -1,7 +1,8 @@
 package com.app.sentinelsecurity;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import android.app.Activity;
 import android.content.Context;
@@ -19,29 +20,15 @@ public class SupervisoryActivity extends ListActivity {
 	}
 
 	@Override
-	protected List<Question> createQuestions() {
-		List<Question> questions = new ArrayList<Question>();
-		Question question1 = new Question();
-		question1.setQuestion(getResources().getString(R.string.supervisory_1));
-		questions.add(question1);
-		Question question2 = new Question();
-		question2.setQuestion(getResources().getString(R.string.supervisory_2));
-		questions.add(question2);
-		Question question3 = new Question();
-		question3.setQuestion(getResources().getString(R.string.supervisory_3));
-		questions.add(question3);
-		Question question4 = new Question();
-		question4.setQuestion(getResources().getString(R.string.supervisory_4));
-		questions.add(question4);
-		Question question5 = new Question();
-		question5.setQuestion(getResources().getString(R.string.supervisory_5));
-		questions.add(question5);
-		Question question6 = new Question();
-		question6.setQuestion(getResources().getString(R.string.supervisory_6));
-		questions.add(question6);
-		Question question7 = new Question();
-		question7.setQuestion(getResources().getString(R.string.supervisory_7));
-		questions.add(question7);
+	protected Map<Integer, String> getQuestionsMap() {
+		Map<Integer, String> questions = new HashMap<Integer, String>();
+		questions.put(R.string.supervisory_1, "Q_SUPERVISORY_1");
+		questions.put(R.string.supervisory_2, "Q_SUPERVISORY_2");
+		questions.put(R.string.supervisory_3, "Q_SUPERVISORY_3");
+		questions.put(R.string.supervisory_4, "Q_SUPERVISORY_4");
+		questions.put(R.string.supervisory_5, "Q_SUPERVISORY_5");
+		questions.put(R.string.supervisory_6, "Q_SUPERVISORY_6");
+		questions.put(R.string.supervisory_7, "Q_SUPERVISORY_7");
 		return questions;
 	}
 

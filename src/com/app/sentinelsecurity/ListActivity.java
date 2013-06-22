@@ -1,6 +1,9 @@
 package com.app.sentinelsecurity;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import android.app.Activity;
 import android.content.Context;
@@ -74,11 +77,11 @@ public abstract class ListActivity extends Activity {
 
 	protected abstract Activity getCurrentActivity();
 
-	protected abstract List<Question> createQuestions();
-
 	protected abstract Context getCurrentContext();
 
 	protected abstract String getHeaderTitle();
+	
+	protected abstract Map<Integer, String> getQuestionsMap();
 
 	protected ListView getListView() {
 		return items;
@@ -86,10 +89,28 @@ public abstract class ListActivity extends Activity {
 
 	private List<Question> getQuestions() {
 		if (questions == null) {
-			questions = createQuestions();
+			questions = createQuestions(getQuestionsMap());
 		} else {
 			questions = dbData.getQuestionsFromDB();
 		}
+		return questions;
+	}
+	
+	protected List<Question> createQuestions(Map<Integer, String> questionsNames) {
+		List<Question> questions = new ArrayList<Question>();
+		Map<String, Question> questionsMap = new HashMap<String, Question>();
+		Question question;
+
+		for (Map.Entry<Integer, String> entry : questionsNames.entrySet()) {
+			Integer questionName = entry.getKey();
+			String questionDbName = entry.getValue();
+			question = new Question(getResources().getString(questionName));
+			questions.add(question);
+			questionsMap.put(questionDbName, question);
+		}
+
+		// dbData.insertQuestions(questionsMap);
+
 		return questions;
 	}
 }
