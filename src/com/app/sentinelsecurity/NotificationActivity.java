@@ -40,7 +40,7 @@ public class NotificationActivity extends ListActivity {
 		questions.add(question3);
 		questionsMap.put("Q_NOTIFY_3", question3);
 		
-		dbData.insertQuestions(questionsMap);
+//		dbData.insertQuestions(questionsMap);
 		
 		return questions;
 	}
@@ -53,16 +53,6 @@ public class NotificationActivity extends ListActivity {
 	@Override
 	protected Activity getActivity() {
 		return NotificationActivity.this;
-	}
-
-	@Override
-	protected List<Question> getQuestions() {
-		if (questions == null) {
-			questions = createQuestions();
-		} else {
-			questions = dbData.getQuestionsFromDB();
-		}
-		return questions;
 	}
 
 	@Override

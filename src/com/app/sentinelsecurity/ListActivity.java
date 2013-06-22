@@ -18,12 +18,14 @@ import com.app.sentinelsecurity.domain.Question;
 public abstract class ListActivity extends Activity {
 	ListView items;
 	DbData dbData;
+	List<Question> questions;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
 		dbData = new DbData(this);
+		questions = getQuestions();
 
 		setContentView(R.layout.activity_questions);
 		items = (ListView) findViewById(R.id.items);
@@ -31,7 +33,7 @@ public abstract class ListActivity extends Activity {
 		TextView header = (TextView) headerView.findViewById(R.id.header);
 		header.setText(getHeaderTitle());
 		items.addHeaderView(headerView);
-		items.setAdapter(new QuestionsAdapter(this, getCurrentContext(), getQuestions()));
+		items.setAdapter(new QuestionsAdapter(this, getCurrentContext(), questions));
 
 		Button next = (Button) findViewById(R.id.button_next);
 		next.setOnClickListener(new View.OnClickListener() {
@@ -68,8 +70,6 @@ public abstract class ListActivity extends Activity {
 
 	protected abstract Activity getCurrentActivity();
 
-	protected abstract List<Question> getQuestions();
-
 	protected abstract List<Question> createQuestions();
 
 	protected abstract Context getCurrentContext();
@@ -78,5 +78,14 @@ public abstract class ListActivity extends Activity {
 
 	protected ListView getListView() {
 		return items;
+	}
+	
+	private List<Question> getQuestions() {
+		if (questions == null) {
+			questions = createQuestions();
+		} else {
+			questions = dbData.getQuestionsFromDB();
+		}
+		return questions;
 	}
 }

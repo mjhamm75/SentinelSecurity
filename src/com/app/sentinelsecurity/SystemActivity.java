@@ -77,14 +77,6 @@ public class SystemActivity extends ListActivity {
 	}
 
 	@Override
-	protected List<Question> getQuestions() {
-		if (questions == null) {
-			questions = createQuestions();
-		}
-		return questions;
-	}
-
-	@Override
 	protected Context getCurrentContext() {
 		return context;
 	}
