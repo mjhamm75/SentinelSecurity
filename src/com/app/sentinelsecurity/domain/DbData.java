@@ -1,5 +1,6 @@
 package com.app.sentinelsecurity.domain;
 
+import java.util.List;
 import java.util.Map;
 
 import android.content.ContentValues;
@@ -77,20 +78,40 @@ public class DbData {
 		db.insert(TABLE_QUESTION, null, values);
 		closeDb();
 	}
-	
+
 	public void updateQuestion(Map<String, String> question) {
 		db = dbHelper.getWritableDatabase();
 		ContentValues values = new ContentValues();
-		
 
 		addContentValue("", "", values);
-		
+
 		db.update(TABLE_QUESTION, values, BaseColumns._ID + "= 1", null);
 		closeDb();
 	}
-	
+
+	public List<Question> getQuestionsFromDB() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void insertQuestions(Map<String, Question> questions) {
+		db = dbHelper.getWritableDatabase();
+		ContentValues values;
+
+		for (Map.Entry<String, Question> entry : questions.entrySet()) {
+			String key = entry.getKey();
+			Question question = entry.getValue();
+
+			values = new ContentValues();
+			values.put(key, question.getIsChecked() ? 1 : 0);
+
+			db.insert(TABLE_QUESTION, null, values);
+		}
+		this.closeDb();
+	}
+
 	private void addContentValue(String name, String value, ContentValues values) {
-		if(value != null && !value.equals("")) {
+		if (value != null && !value.equals("")) {
 			values.put(name, value);
 		}
 	}
