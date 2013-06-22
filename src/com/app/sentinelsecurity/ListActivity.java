@@ -23,16 +23,13 @@ public abstract class ListActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		dbData = new DbData(this);
 		questions = getQuestions();
 
 		setContentView(R.layout.activity_questions);
 		items = (ListView) findViewById(R.id.items);
-		View headerView = getLayoutInflater().inflate(R.layout.activity_questions_header, null);
-		TextView header = (TextView) headerView.findViewById(R.id.header);
-		header.setText(getHeaderTitle());
-		items.addHeaderView(headerView);
+		createHeader();
 		items.setAdapter(new QuestionsAdapter(this, getCurrentContext(), questions));
 
 		Button next = (Button) findViewById(R.id.button_next);
@@ -64,6 +61,13 @@ public abstract class ListActivity extends Activity {
 		});
 	}
 
+	private void createHeader() {
+		View headerView = getLayoutInflater().inflate(R.layout.activity_questions_header, null);
+		TextView header = (TextView) headerView.findViewById(R.id.header);
+		header.setText(getHeaderTitle());
+		items.addHeaderView(headerView);
+	}
+
 	protected abstract Class<?> getNextClass();
 
 	protected abstract Context getActivity();
@@ -79,7 +83,7 @@ public abstract class ListActivity extends Activity {
 	protected ListView getListView() {
 		return items;
 	}
-	
+
 	private List<Question> getQuestions() {
 		if (questions == null) {
 			questions = createQuestions();
