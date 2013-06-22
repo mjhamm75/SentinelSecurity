@@ -12,14 +12,18 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.app.sentinelsecurity.domain.DbData;
 import com.app.sentinelsecurity.domain.Question;
 
 public abstract class ListActivity extends Activity {
 	ListView items;
+	DbData dbData;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		dbData = new DbData(this);
 
 		setContentView(R.layout.activity_questions);
 		items = (ListView) findViewById(R.id.items);
