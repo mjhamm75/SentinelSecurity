@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -44,6 +46,28 @@ public class SingleQuestionActivity extends Activity {
 					Toast t = Toast.makeText(getApplicationContext(),
 							"Opps! Your device doesn't support Speech to Text", Toast.LENGTH_SHORT);
 					t.show();
+				}
+			}
+		});
+
+		final CheckBox yes = (CheckBox) findViewById(R.id.yes_single);
+		final CheckBox no = (CheckBox) findViewById(R.id.no_single);
+
+		yes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if (isChecked) {
+					no.setChecked(false);
+				}
+			}
+		});
+		no.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if (isChecked) {
+					yes.setChecked(false);
 				}
 			}
 		});
