@@ -22,7 +22,7 @@ public class QuestionsAdapter extends ArrayAdapter<Question> {
 	QuestionHolder holder = null;
 	ListView list;
 
-	public QuestionsAdapter(ListActivity activity, Context context, List<Question> questions) {
+	public QuestionsAdapter(ListActivity activity, Context context, List<Question> questions, Long id) {
 		super(context, R.layout.row_questions, questions);
 		this.questions = questions;
 		this.context = context;
@@ -46,6 +46,8 @@ public class QuestionsAdapter extends ArrayAdapter<Question> {
 		}
 		Question question = questions.get(position);
 		holder.question.setText(question.getQuestion());
+		holder.yes.setChecked(question.getIsChecked() ? true : false);
+		holder.no.setChecked(question.getIsChecked() ? true : false);
 		holder.yes.setTag(getItem(position));
 		holder.no.setTag(getItem(position));
 		holder.yes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

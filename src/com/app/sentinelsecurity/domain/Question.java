@@ -4,13 +4,15 @@ public class Question {
 	String question;
 	Boolean isChecked;
 	String comment;
+	String dbColumn;
 
 	public Question() {
 		isChecked = false;
 	}
 	
-	public Question(String question) {
+	public Question(String question, String dbColumn) {
 		this.question = question;
+		this.dbColumn = dbColumn;
 		isChecked = false;
 	}
 
@@ -43,6 +45,14 @@ public class Question {
 
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+
+	public String getDbColumn() {
+		return dbColumn;
+	}
+
+	public void setDbColumn(String dbColumn) {
+		this.dbColumn = dbColumn;
 	}
 
 }

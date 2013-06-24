@@ -5,6 +5,7 @@ import java.util.Map;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
@@ -118,12 +119,12 @@ public class DbData {
 		addContentValue("", "", values);
 
 		db.update(TABLE_QUESTION, values, BaseColumns._ID + "=" + id, null);
-		closeDb();
 	}
 
-	public List<Question> getQuestionsFromDB() {
-		// TODO Auto-generated method stub
-		return null;
+	public Cursor getQuestionsFromDB(Long id) {
+		db = dbHelper.getReadableDatabase();
+		Cursor cursor = db.query(TABLE_QUESTION, null, "_ID = 1", null, null, null, null);
+		return cursor;
 	}
 
 	public void insertQuestions(Map<String, Question> questions) {
