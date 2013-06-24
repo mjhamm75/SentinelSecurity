@@ -1,6 +1,5 @@
 package com.app.sentinelsecurity.domain;
 
-import java.util.List;
 import java.util.Map;
 
 import android.content.ContentValues;
@@ -12,55 +11,112 @@ import android.provider.BaseColumns;
 
 public class DbData {
 	public static final String DB_NAME = "sentinel_security";
-	public static final int DB_VERSION = 2;
+	public static final int DB_VERSION = 3;
 
 	public static final String TABLE_QUESTION = "question";
 	public static final String Q_ID = BaseColumns._ID;
 
-	public static final String Q_NOTIFY_1 = "notify_1";
-	public static final String Q_NOTIFY_2 = "notify_2";
-	public static final String Q_NOTIFY_3 = "notify_3";
+	public static final String Q_NOTIFY_1_YES = "notify_1_y";
+	public static final String Q_NOTIFY_2_YES = "notify_2_y";
+	public static final String Q_NOTIFY_3_YES = "notify_3_y";
 
-	public static final String Q_SYSTEM_1 = "system_1";
-	public static final String Q_SYSTEM_2 = "system_2";
-	public static final String Q_SYSTEM_3 = "system_3";
-	public static final String Q_SYSTEM_4 = "system_4";
-	public static final String Q_SYSTEM_5 = "system_5";
-	public static final String Q_SYSTEM_6 = "system_6";
-	public static final String Q_SYSTEM_7 = "system_7";
-	public static final String Q_SYSTEM_8 = "system_8";
-	public static final String Q_SYSTEM_9 = "system_9";
-	public static final String Q_SYSTEM_10 = "system_10";
-	public static final String Q_SYSTEM_11 = "system_11";
-	public static final String Q_SYSTEM_12 = "system_12";
-	public static final String Q_SYSTEM_13 = "system_13";
-	public static final String Q_SYSTEM_14 = "system_14";
+	public static final String Q_NOTIFY_1_NO = "notify_1_n";
+	public static final String Q_NOTIFY_2_NO = "notify_2_n";
+	public static final String Q_NOTIFY_3_NO = "notify_3_n";
 
-	public static final String Q_SUPERVISORY_1 = "supervisory_1";
-	public static final String Q_SUPERVISORY_2 = "supervisory_2";
-	public static final String Q_SUPERVISORY_3 = "supervisory_3";
-	public static final String Q_SUPERVISORY_4 = "supervisory_4";
-	public static final String Q_SUPERVISORY_5 = "supervisory_5";
-	public static final String Q_SUPERVISORY_6 = "supervisory_6";
-	public static final String Q_SUPERVISORY_7 = "supervisory_7";
+	public static final String Q_SYSTEM_1_YES = "system_1_y";
+	public static final String Q_SYSTEM_2_YES = "system_2_y";
+	public static final String Q_SYSTEM_3_YES = "system_3_y";
+	public static final String Q_SYSTEM_4_YES = "system_4_y";
+	public static final String Q_SYSTEM_5_YES = "system_5_y";
+	public static final String Q_SYSTEM_6_YES = "system_6_y";
+	public static final String Q_SYSTEM_7_YES = "system_7_y";
+	public static final String Q_SYSTEM_8_YES = "system_8_y";
+	public static final String Q_SYSTEM_9_YES = "system_9_y";
+	public static final String Q_SYSTEM_10_YES = "system_10_y";
+	public static final String Q_SYSTEM_11_YES = "system_11_y";
+	public static final String Q_SYSTEM_12_YES = "system_12_y";
+	public static final String Q_SYSTEM_13_YES = "system_13_y";
+	public static final String Q_SYSTEM_14_YES = "system_14_y";
 
-	public static final String Q_MONITORING_1 = "monitoring_1";
-	public static final String Q_MONITORING_2 = "monitoring_2";
-	public static final String Q_MONITORING_3 = "monitoring_3";
+	public static final String Q_SYSTEM_1_NO = "system_1_n";
+	public static final String Q_SYSTEM_2_NO = "system_2_n";
+	public static final String Q_SYSTEM_3_NO = "system_3_n";
+	public static final String Q_SYSTEM_4_NO = "system_4_n";
+	public static final String Q_SYSTEM_5_NO = "system_5_n";
+	public static final String Q_SYSTEM_6_NO = "system_6_n";
+	public static final String Q_SYSTEM_7_NO = "system_7_n";
+	public static final String Q_SYSTEM_8_NO = "system_8_n";
+	public static final String Q_SYSTEM_9_NO = "system_9_n";
+	public static final String Q_SYSTEM_10_NO = "system_10_n";
+	public static final String Q_SYSTEM_11_NO = "system_11_n";
+	public static final String Q_SYSTEM_12_NO = "system_12_n";
+	public static final String Q_SYSTEM_13_NO = "system_13_n";
+	public static final String Q_SYSTEM_14_NO = "system_14_n";
 
-	public static final String Q_NOTIFICATION_RESUME_1 = "notification_resume_1";
-	public static final String Q_NOTIFICATION_RESUME_2 = "notification_resume_2";
-	public static final String Q_NOTIFICATION_RESUME_3 = "notification_resume_3";
+	public static final String Q_SUPERVISORY_1_YES = "supervisory_1_y";
+	public static final String Q_SUPERVISORY_2_YES = "supervisory_2_y";
+	public static final String Q_SUPERVISORY_3_YES = "supervisory_3_y";
+	public static final String Q_SUPERVISORY_4_YES = "supervisory_4_y";
+	public static final String Q_SUPERVISORY_5_YES = "supervisory_5_y";
+	public static final String Q_SUPERVISORY_6_YES = "supervisory_6_y";
+	public static final String Q_SUPERVISORY_7_YES = "supervisory_7_y";
+
+	public static final String Q_SUPERVISORY_1_NO = "supervisory_1_n";
+	public static final String Q_SUPERVISORY_2_NO = "supervisory_2_n";
+	public static final String Q_SUPERVISORY_3_NO = "supervisory_3_n";
+	public static final String Q_SUPERVISORY_4_NO = "supervisory_4_n";
+	public static final String Q_SUPERVISORY_5_NO = "supervisory_5_n";
+	public static final String Q_SUPERVISORY_6_NO = "supervisory_6_n";
+	public static final String Q_SUPERVISORY_7_NO = "supervisory_7_n";
+
+	public static final String Q_MONITORING_1_YES = "monitoring_1_y";
+	public static final String Q_MONITORING_2_YES = "monitoring_2_y";
+	public static final String Q_MONITORING_3_YES = "monitoring_3_y";
+
+	public static final String Q_MONITORING_1_NO = "monitoring_1_n";
+	public static final String Q_MONITORING_2_NO = "monitoring_2_n";
+	public static final String Q_MONITORING_3_NO = "monitoring_3_n";
+
+	public static final String Q_NOTIFICATION_RESUME_1_YES = "notification_resume_1_y";
+	public static final String Q_NOTIFICATION_RESUME_2_YES = "notification_resume_2_y";
+	public static final String Q_NOTIFICATION_RESUME_3_YES = "notification_resume_3_y";
+
+	public static final String Q_NOTIFICATION_RESUME_1_NO = "notification_resume_1_n";
+	public static final String Q_NOTIFICATION_RESUME_2_NO = "notification_resume_2_n";
+	public static final String Q_NOTIFICATION_RESUME_3_NO = "notification_resume_3_n";
 
 	public static final String CREATE_TABLE_QUESTION = String.format("Create table %s (%s integer primary key, "
 			+ "%s int, %s int, %s int, %s int, %s int, " + "%s int, %s int, %s int, %s int, %s int, "
 			+ "%s int, %s int, %s int, %s int, %s int, " + "%s int, %s int, %s int, %s int, %s int, "
+			+ "%s int, %s int, %s int, %s int, %s int, " + "%s int, %s int, %s int, %s int, %s int, "
+			+ "%s int, %s int, %s int, %s int, %s int, " + "%s int, %s int, %s int, %s int, %s int, "
+			+ "%s int, %s int, %s int, %s int, %s int, " + "%s int, %s int, %s int, %s int, %s int, "
 			+ "%s int, %s int, %s int, %s int, %s int, " + "%s int, %s int, %s int, %s int, %s int)", TABLE_QUESTION,
-			Q_ID, Q_NOTIFY_1, Q_NOTIFY_2, Q_NOTIFY_3, Q_SYSTEM_1, Q_SYSTEM_2, Q_SYSTEM_3, Q_SYSTEM_4, Q_SYSTEM_5,
-			Q_SYSTEM_6, Q_SYSTEM_7, Q_SYSTEM_8, Q_SYSTEM_9, Q_SYSTEM_10, Q_SYSTEM_11, Q_SYSTEM_12, Q_SYSTEM_13,
-			Q_SYSTEM_14, Q_SUPERVISORY_1, Q_SUPERVISORY_2, Q_SUPERVISORY_3, Q_SUPERVISORY_4, Q_SUPERVISORY_5,
-			Q_SUPERVISORY_6, Q_SUPERVISORY_7, Q_MONITORING_1, Q_MONITORING_2, Q_MONITORING_3, Q_NOTIFICATION_RESUME_1,
-			Q_NOTIFICATION_RESUME_2, Q_NOTIFICATION_RESUME_3);
+			
+			Q_ID, Q_NOTIFY_1_YES, Q_NOTIFY_2_YES, Q_NOTIFY_3_YES, Q_NOTIFY_1_NO, Q_NOTIFY_2_NO, Q_NOTIFY_3_NO,
+			
+			Q_SYSTEM_1_YES, Q_SYSTEM_2_YES, Q_SYSTEM_3_YES, Q_SYSTEM_4_YES, Q_SYSTEM_5_YES, Q_SYSTEM_6_YES,
+			
+			Q_SYSTEM_7_YES, Q_SYSTEM_8_YES, Q_SYSTEM_9_YES, Q_SYSTEM_10_YES, Q_SYSTEM_11_YES, Q_SYSTEM_12_YES,
+			
+			Q_SYSTEM_13_YES, Q_SYSTEM_14_YES, Q_SYSTEM_1_NO, Q_SYSTEM_2_NO, Q_SYSTEM_3_NO, Q_SYSTEM_4_NO,
+			
+			Q_SYSTEM_5_NO, Q_SYSTEM_6_NO, Q_SYSTEM_7_NO, Q_SYSTEM_8_NO, Q_SYSTEM_9_NO, Q_SYSTEM_10_NO, Q_SYSTEM_11_NO,
+			
+			Q_SYSTEM_12_NO, Q_SYSTEM_13_NO, Q_SYSTEM_14_NO, Q_SUPERVISORY_1_YES, Q_SUPERVISORY_2_YES,
+			
+			Q_SUPERVISORY_3_YES, Q_SUPERVISORY_4_YES, Q_SUPERVISORY_5_YES, Q_SUPERVISORY_6_YES, Q_SUPERVISORY_7_YES,
+			
+			Q_SUPERVISORY_1_NO, Q_SUPERVISORY_2_NO, Q_SUPERVISORY_3_NO, Q_SUPERVISORY_4_NO, Q_SUPERVISORY_5_NO,
+			
+			Q_SUPERVISORY_6_NO, Q_SUPERVISORY_7_NO, Q_MONITORING_1_YES, Q_MONITORING_2_YES, Q_MONITORING_3_YES,
+			
+			Q_MONITORING_1_NO, Q_MONITORING_2_NO, Q_MONITORING_3_NO, Q_NOTIFICATION_RESUME_1_YES,
+			
+			Q_NOTIFICATION_RESUME_2_YES, Q_NOTIFICATION_RESUME_3_YES, Q_NOTIFICATION_RESUME_1_NO,
+			
+			Q_NOTIFICATION_RESUME_2_NO, Q_NOTIFICATION_RESUME_3_NO);
 
 	Context context;
 	DbHelper dbHelper;
@@ -76,37 +132,67 @@ public class DbData {
 	public Long createQuestion() {
 		db = dbHelper.getWritableDatabase();
 		ContentValues values = new ContentValues();
-		values.put(Q_NOTIFY_1, "0");
-		values.put(Q_NOTIFY_2, "0");
-		values.put(Q_NOTIFY_3, "0");
-		values.put(Q_SYSTEM_1, "0");
-		values.put(Q_SYSTEM_2, "0");
-		values.put(Q_SYSTEM_3, "0");
-		values.put(Q_SYSTEM_4, "0");
-		values.put(Q_SYSTEM_5, "0");
-		values.put(Q_SYSTEM_6, "0");
-		values.put(Q_SYSTEM_7, "0");
-		values.put(Q_SYSTEM_8, "0");
-		values.put(Q_SYSTEM_9, "0");
-		values.put(Q_SYSTEM_10, "0");
-		values.put(Q_SYSTEM_11, "0");
-		values.put(Q_SYSTEM_12, "0");
-		values.put(Q_SYSTEM_13, "0");
-		values.put(Q_SYSTEM_14, "0");
-		values.put(Q_SUPERVISORY_1, "0");
-		values.put(Q_SUPERVISORY_2, "0");
-		values.put(Q_SUPERVISORY_3, "0");
-		values.put(Q_SUPERVISORY_4, "0");
-		values.put(Q_SUPERVISORY_5, "0");
-		values.put(Q_SUPERVISORY_6, "0");
-		values.put(Q_SUPERVISORY_7, "0");
-		values.put(Q_MONITORING_1, "0");
-		values.put(Q_MONITORING_2, "0");
-		values.put(Q_MONITORING_3, "0");
-		values.put(Q_NOTIFICATION_RESUME_1, "0");
-		values.put(Q_NOTIFICATION_RESUME_2, "0");
-		values.put(Q_NOTIFICATION_RESUME_3, "0");
-		
+		values.put(Q_NOTIFY_1_YES, "0");
+		values.put(Q_NOTIFY_2_YES, "0");
+		values.put(Q_NOTIFY_3_YES, "0");
+		values.put(Q_NOTIFY_1_NO, "0");
+		values.put(Q_NOTIFY_2_NO, "0");
+		values.put(Q_NOTIFY_3_NO, "0");
+		values.put(Q_SYSTEM_1_YES, "0");
+		values.put(Q_SYSTEM_2_YES, "0");
+		values.put(Q_SYSTEM_3_YES, "0");
+		values.put(Q_SYSTEM_4_YES, "0");
+		values.put(Q_SYSTEM_5_YES, "0");
+		values.put(Q_SYSTEM_6_YES, "0");
+		values.put(Q_SYSTEM_7_YES, "0");
+		values.put(Q_SYSTEM_8_YES, "0");
+		values.put(Q_SYSTEM_9_YES, "0");
+		values.put(Q_SYSTEM_10_YES, "0");
+		values.put(Q_SYSTEM_11_YES, "0");
+		values.put(Q_SYSTEM_12_YES, "0");
+		values.put(Q_SYSTEM_13_YES, "0");
+		values.put(Q_SYSTEM_14_YES, "0");
+		values.put(Q_SYSTEM_1_NO, "0");
+		values.put(Q_SYSTEM_2_NO, "0");
+		values.put(Q_SYSTEM_3_NO, "0");
+		values.put(Q_SYSTEM_4_NO, "0");
+		values.put(Q_SYSTEM_5_NO, "0");
+		values.put(Q_SYSTEM_6_NO, "0");
+		values.put(Q_SYSTEM_7_NO, "0");
+		values.put(Q_SYSTEM_8_NO, "0");
+		values.put(Q_SYSTEM_9_NO, "0");
+		values.put(Q_SYSTEM_10_NO, "0");
+		values.put(Q_SYSTEM_11_NO, "0");
+		values.put(Q_SYSTEM_12_NO, "0");
+		values.put(Q_SYSTEM_13_NO, "0");
+		values.put(Q_SYSTEM_14_NO, "0");
+		values.put(Q_SUPERVISORY_1_YES, "0");
+		values.put(Q_SUPERVISORY_2_YES, "0");
+		values.put(Q_SUPERVISORY_3_YES, "0");
+		values.put(Q_SUPERVISORY_4_YES, "0");
+		values.put(Q_SUPERVISORY_5_YES, "0");
+		values.put(Q_SUPERVISORY_6_YES, "0");
+		values.put(Q_SUPERVISORY_7_YES, "0");
+		values.put(Q_SUPERVISORY_1_NO, "0");
+		values.put(Q_SUPERVISORY_2_NO, "0");
+		values.put(Q_SUPERVISORY_3_NO, "0");
+		values.put(Q_SUPERVISORY_4_NO, "0");
+		values.put(Q_SUPERVISORY_5_NO, "0");
+		values.put(Q_SUPERVISORY_6_NO, "0");
+		values.put(Q_SUPERVISORY_7_NO, "0");
+		values.put(Q_MONITORING_1_YES, "0");
+		values.put(Q_MONITORING_2_YES, "0");
+		values.put(Q_MONITORING_3_YES, "0");
+		values.put(Q_MONITORING_1_NO, "0");
+		values.put(Q_MONITORING_2_NO, "0");
+		values.put(Q_MONITORING_3_NO, "0");
+		values.put(Q_NOTIFICATION_RESUME_1_YES, "0");
+		values.put(Q_NOTIFICATION_RESUME_2_YES, "0");
+		values.put(Q_NOTIFICATION_RESUME_3_YES, "0");
+		values.put(Q_NOTIFICATION_RESUME_1_NO, "0");
+		values.put(Q_NOTIFICATION_RESUME_2_NO, "0");
+		values.put(Q_NOTIFICATION_RESUME_3_NO, "0");
+
 		Long id = db.insert(TABLE_QUESTION, null, values);
 		closeDb();
 		return id;
@@ -129,19 +215,19 @@ public class DbData {
 
 	public void insertQuestions(Map<String, Question> questions) {
 		db = dbHelper.getWritableDatabase();
-		ContentValues values;
+		ContentValues values = new ContentValues();
 
 		for (Map.Entry<String, Question> entry : questions.entrySet()) {
 			String key = entry.getKey();
 			Question question = entry.getValue();
 
-			if (key != null && question.getIsChecked() != null) {
-
-				values = new ContentValues();
-				values.put(key, question.getIsChecked() ? 1 : 0);
-
-				db.insert(TABLE_QUESTION, null, values);
+			if (key != null && question.getIsYesChecked() != null) {
+				values.put(key, question.getIsYesChecked() ? 1 : 0);
 			}
+			if (key != null && question.getIsNoChecked() != null) {
+				values.put(key, question.getIsNoChecked() ? 1 : 0);
+			}
+			db.insert(TABLE_QUESTION, null, values);
 		}
 		this.closeDb();
 	}

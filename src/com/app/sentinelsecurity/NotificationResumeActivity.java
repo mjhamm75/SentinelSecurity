@@ -1,8 +1,7 @@
 package com.app.sentinelsecurity;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import android.app.Activity;
 import android.content.Context;
@@ -19,13 +18,13 @@ public class NotificationResumeActivity extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 	}
-	
+
 	@Override
-	protected Map<Integer, String> getQuestionsMap() {
-		Map<Integer, String> questions = new HashMap<Integer, String>();
-		questions.put(R.string.notification_resume_1, DbData.Q_NOTIFICATION_RESUME_1);
-		questions.put(R.string.notification_resume_2, DbData.Q_NOTIFICATION_RESUME_2);
-		questions.put(R.string.notification_resume_3, DbData.Q_NOTIFICATION_RESUME_3);
+	protected List<Question> getQuestionsList() {
+		List<Question> questions = new ArrayList<Question>();
+		questions.add(new Question(getResources().getString(R.string.notification_resume_1), DbData.Q_NOTIFICATION_RESUME_1_YES, DbData.Q_NOTIFICATION_RESUME_1_NO));
+		questions.add(new Question(getResources().getString(R.string.notification_resume_2), DbData.Q_NOTIFICATION_RESUME_2_YES, DbData.Q_NOTIFICATION_RESUME_2_NO));
+		questions.add(new Question(getResources().getString(R.string.notification_resume_3), DbData.Q_NOTIFICATION_RESUME_3_YES, DbData.Q_NOTIFICATION_RESUME_3_NO));
 		return questions;
 	}
 

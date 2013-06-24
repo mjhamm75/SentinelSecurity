@@ -1,9 +1,6 @@
 package com.app.sentinelsecurity;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import android.app.Activity;
 import android.content.Context;
@@ -82,7 +79,7 @@ public abstract class ListActivity extends Activity {
 
 	protected abstract String getHeaderTitle();
 
-	protected abstract Map<Integer, String> getQuestionsMap();
+	protected abstract List<Question> getQuestionsList();
 
 	protected ListView getListView() {
 		return items;
@@ -91,31 +88,13 @@ public abstract class ListActivity extends Activity {
 	private List<Question> getQuestions(Long id) {
 		Cursor cursor1 = dbData.getQuestionsFromDB(1L);
 		if (cursor1 == null) {
-			questions = createQuestions(getQuestionsMap());
+			questions = getQuestionsList();
 		} else {
-			questions = createQuestions(getQuestionsMap());
+			questions = getQuestionsList();
 			Cursor cursor = dbData.getQuestionsFromDB(1L);
 			questions = getQuestionsFromCursor(cursor);
 
 		}
-		return questions;
-	}
-
-	protected List<Question> createQuestions(Map<Integer, String> questionsNames) {
-		List<Question> questions = new ArrayList<Question>();
-		Map<String, Question> questionsMap = new HashMap<String, Question>();
-		Question question;
-
-		for (Map.Entry<Integer, String> entry : questionsNames.entrySet()) {
-			Integer questionName = entry.getKey();
-			String questionDbName = entry.getValue();
-			question = new Question(getResources().getString(questionName), questionDbName);
-			questions.add(question);
-			questionsMap.put(questionDbName, question);
-		}
-
-		// dbData.insertQuestions(questionsMap);
-
 		return questions;
 	}
 
@@ -124,10 +103,10 @@ public abstract class ListActivity extends Activity {
 		for (Question question : questions) {
 			// String checked =
 			// cursor.getString(cursor.getColumnIndex(question.getDbColumn()));
-			int checked = cursor.getInt(cursor.getColumnIndex(question.getDbColumn()));
-
-			question.setIsChecked(checked == 0 ? false : true);
-
+			int checkedYes = cursor.getInt(cursor.getColumnIndex(question.getDbYesColumn()));
+			question.setIsYesChecked(checkedYes == 0 ? false : true);
+			int checkedNo = cursor.getInt(cursor.getColumnIndex(question.getDbNoColumn()));
+			question.setIsNoChecked(checkedNo == 0 ? false : true);
 		}
 		return questions;
 	}

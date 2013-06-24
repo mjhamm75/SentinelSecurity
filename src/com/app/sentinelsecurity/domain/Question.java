@@ -2,24 +2,30 @@ package com.app.sentinelsecurity.domain;
 
 public class Question {
 	String question;
-	Boolean isChecked;
+	Boolean isYesChecked;
+	Boolean isNoChecked;
 	String comment;
-	String dbColumn;
+	String dbYesColumn;
+	String dbNoColumn;
 
 	public Question() {
-		isChecked = false;
-	}
-	
-	public Question(String question, String dbColumn) {
-		this.question = question;
-		this.dbColumn = dbColumn;
-		isChecked = false;
+		isYesChecked = false;
+		isNoChecked = false;
 	}
 
-	public Question(String question, Boolean isChecked, String comment) {
+	public Question(String question, String dbYesColumn, String dbNoColumn) {
+		this.question = question;
+		this.dbYesColumn = dbYesColumn;
+		this.dbNoColumn = dbNoColumn;
+		isYesChecked = false;
+		isNoChecked = false;
+	}
+
+	public Question(String question, Boolean isYesChecked, Boolean isNoChecked, String comment) {
 		super();
 		this.question = question;
-		this.isChecked = isChecked;
+		this.isYesChecked = isYesChecked;
+		this.isNoChecked = isNoChecked;
 		this.comment = comment;
 	}
 
@@ -31,12 +37,20 @@ public class Question {
 		this.question = question;
 	}
 
-	public Boolean getIsChecked() {
-		return isChecked;
+	public Boolean getIsYesChecked() {
+		return isYesChecked;
 	}
 
-	public void setIsChecked(Boolean isChecked) {
-		this.isChecked = isChecked;
+	public void setIsYesChecked(Boolean isYesChecked) {
+		this.isYesChecked = isYesChecked;
+	}
+
+	public Boolean getIsNoChecked() {
+		return isNoChecked;
+	}
+
+	public void setIsNoChecked(Boolean isNoChecked) {
+		this.isNoChecked = isNoChecked;
 	}
 
 	public String getComment() {
@@ -47,12 +61,20 @@ public class Question {
 		this.comment = comment;
 	}
 
-	public String getDbColumn() {
-		return dbColumn;
+	public String getDbYesColumn() {
+		return dbYesColumn;
 	}
 
-	public void setDbColumn(String dbColumn) {
-		this.dbColumn = dbColumn;
+	public void setDbYesColumn(String dbYesColumn) {
+		this.dbYesColumn = dbYesColumn;
+	}
+
+	public String getDbNoColumn() {
+		return dbNoColumn;
+	}
+
+	public void setDbNoColumn(String dbNoColumn) {
+		this.dbNoColumn = dbNoColumn;
 	}
 
 }
