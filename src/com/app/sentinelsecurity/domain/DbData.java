@@ -93,30 +93,30 @@ public class DbData {
 			+ "%s int, %s int, %s int, %s int, %s int, " + "%s int, %s int, %s int, %s int, %s int, "
 			+ "%s int, %s int, %s int, %s int, %s int, " + "%s int, %s int, %s int, %s int, %s int, "
 			+ "%s int, %s int, %s int, %s int, %s int, " + "%s int, %s int, %s int, %s int, %s int)", TABLE_QUESTION,
-			
-			Q_ID, Q_NOTIFY_1_YES, Q_NOTIFY_2_YES, Q_NOTIFY_3_YES, Q_NOTIFY_1_NO, Q_NOTIFY_2_NO, Q_NOTIFY_3_NO,
-			
-			Q_SYSTEM_1_YES, Q_SYSTEM_2_YES, Q_SYSTEM_3_YES, Q_SYSTEM_4_YES, Q_SYSTEM_5_YES, Q_SYSTEM_6_YES,
-			
-			Q_SYSTEM_7_YES, Q_SYSTEM_8_YES, Q_SYSTEM_9_YES, Q_SYSTEM_10_YES, Q_SYSTEM_11_YES, Q_SYSTEM_12_YES,
-			
-			Q_SYSTEM_13_YES, Q_SYSTEM_14_YES, Q_SYSTEM_1_NO, Q_SYSTEM_2_NO, Q_SYSTEM_3_NO, Q_SYSTEM_4_NO,
-			
-			Q_SYSTEM_5_NO, Q_SYSTEM_6_NO, Q_SYSTEM_7_NO, Q_SYSTEM_8_NO, Q_SYSTEM_9_NO, Q_SYSTEM_10_NO, Q_SYSTEM_11_NO,
-			
-			Q_SYSTEM_12_NO, Q_SYSTEM_13_NO, Q_SYSTEM_14_NO, Q_SUPERVISORY_1_YES, Q_SUPERVISORY_2_YES,
-			
-			Q_SUPERVISORY_3_YES, Q_SUPERVISORY_4_YES, Q_SUPERVISORY_5_YES, Q_SUPERVISORY_6_YES, Q_SUPERVISORY_7_YES,
-			
-			Q_SUPERVISORY_1_NO, Q_SUPERVISORY_2_NO, Q_SUPERVISORY_3_NO, Q_SUPERVISORY_4_NO, Q_SUPERVISORY_5_NO,
-			
-			Q_SUPERVISORY_6_NO, Q_SUPERVISORY_7_NO, Q_MONITORING_1_YES, Q_MONITORING_2_YES, Q_MONITORING_3_YES,
-			
-			Q_MONITORING_1_NO, Q_MONITORING_2_NO, Q_MONITORING_3_NO, Q_NOTIFICATION_RESUME_1_YES,
-			
-			Q_NOTIFICATION_RESUME_2_YES, Q_NOTIFICATION_RESUME_3_YES, Q_NOTIFICATION_RESUME_1_NO,
-			
-			Q_NOTIFICATION_RESUME_2_NO, Q_NOTIFICATION_RESUME_3_NO);
+
+	Q_ID, Q_NOTIFY_1_YES, Q_NOTIFY_2_YES, Q_NOTIFY_3_YES, Q_NOTIFY_1_NO, Q_NOTIFY_2_NO, Q_NOTIFY_3_NO,
+
+	Q_SYSTEM_1_YES, Q_SYSTEM_2_YES, Q_SYSTEM_3_YES, Q_SYSTEM_4_YES, Q_SYSTEM_5_YES, Q_SYSTEM_6_YES,
+
+	Q_SYSTEM_7_YES, Q_SYSTEM_8_YES, Q_SYSTEM_9_YES, Q_SYSTEM_10_YES, Q_SYSTEM_11_YES, Q_SYSTEM_12_YES,
+
+	Q_SYSTEM_13_YES, Q_SYSTEM_14_YES, Q_SYSTEM_1_NO, Q_SYSTEM_2_NO, Q_SYSTEM_3_NO, Q_SYSTEM_4_NO,
+
+	Q_SYSTEM_5_NO, Q_SYSTEM_6_NO, Q_SYSTEM_7_NO, Q_SYSTEM_8_NO, Q_SYSTEM_9_NO, Q_SYSTEM_10_NO, Q_SYSTEM_11_NO,
+
+	Q_SYSTEM_12_NO, Q_SYSTEM_13_NO, Q_SYSTEM_14_NO, Q_SUPERVISORY_1_YES, Q_SUPERVISORY_2_YES,
+
+	Q_SUPERVISORY_3_YES, Q_SUPERVISORY_4_YES, Q_SUPERVISORY_5_YES, Q_SUPERVISORY_6_YES, Q_SUPERVISORY_7_YES,
+
+	Q_SUPERVISORY_1_NO, Q_SUPERVISORY_2_NO, Q_SUPERVISORY_3_NO, Q_SUPERVISORY_4_NO, Q_SUPERVISORY_5_NO,
+
+	Q_SUPERVISORY_6_NO, Q_SUPERVISORY_7_NO, Q_MONITORING_1_YES, Q_MONITORING_2_YES, Q_MONITORING_3_YES,
+
+	Q_MONITORING_1_NO, Q_MONITORING_2_NO, Q_MONITORING_3_NO, Q_NOTIFICATION_RESUME_1_YES,
+
+	Q_NOTIFICATION_RESUME_2_YES, Q_NOTIFICATION_RESUME_3_YES, Q_NOTIFICATION_RESUME_1_NO,
+
+	Q_NOTIFICATION_RESUME_2_NO, Q_NOTIFICATION_RESUME_3_NO);
 
 	Context context;
 	DbHelper dbHelper;
@@ -132,79 +132,88 @@ public class DbData {
 	public Long createQuestion() {
 		db = dbHelper.getWritableDatabase();
 		ContentValues values = new ContentValues();
-		values.put(Q_NOTIFY_1_YES, "0");
-		values.put(Q_NOTIFY_2_YES, "0");
-		values.put(Q_NOTIFY_3_YES, "0");
-		values.put(Q_NOTIFY_1_NO, "0");
-		values.put(Q_NOTIFY_2_NO, "0");
-		values.put(Q_NOTIFY_3_NO, "0");
-		values.put(Q_SYSTEM_1_YES, "0");
-		values.put(Q_SYSTEM_2_YES, "0");
-		values.put(Q_SYSTEM_3_YES, "0");
-		values.put(Q_SYSTEM_4_YES, "0");
-		values.put(Q_SYSTEM_5_YES, "0");
-		values.put(Q_SYSTEM_6_YES, "0");
-		values.put(Q_SYSTEM_7_YES, "0");
-		values.put(Q_SYSTEM_8_YES, "0");
-		values.put(Q_SYSTEM_9_YES, "0");
-		values.put(Q_SYSTEM_10_YES, "0");
-		values.put(Q_SYSTEM_11_YES, "0");
-		values.put(Q_SYSTEM_12_YES, "0");
-		values.put(Q_SYSTEM_13_YES, "0");
-		values.put(Q_SYSTEM_14_YES, "0");
-		values.put(Q_SYSTEM_1_NO, "0");
-		values.put(Q_SYSTEM_2_NO, "0");
-		values.put(Q_SYSTEM_3_NO, "0");
-		values.put(Q_SYSTEM_4_NO, "0");
-		values.put(Q_SYSTEM_5_NO, "0");
-		values.put(Q_SYSTEM_6_NO, "0");
-		values.put(Q_SYSTEM_7_NO, "0");
-		values.put(Q_SYSTEM_8_NO, "0");
-		values.put(Q_SYSTEM_9_NO, "0");
-		values.put(Q_SYSTEM_10_NO, "0");
-		values.put(Q_SYSTEM_11_NO, "0");
-		values.put(Q_SYSTEM_12_NO, "0");
-		values.put(Q_SYSTEM_13_NO, "0");
-		values.put(Q_SYSTEM_14_NO, "0");
-		values.put(Q_SUPERVISORY_1_YES, "0");
-		values.put(Q_SUPERVISORY_2_YES, "0");
-		values.put(Q_SUPERVISORY_3_YES, "0");
-		values.put(Q_SUPERVISORY_4_YES, "0");
-		values.put(Q_SUPERVISORY_5_YES, "0");
-		values.put(Q_SUPERVISORY_6_YES, "0");
-		values.put(Q_SUPERVISORY_7_YES, "0");
-		values.put(Q_SUPERVISORY_1_NO, "0");
-		values.put(Q_SUPERVISORY_2_NO, "0");
-		values.put(Q_SUPERVISORY_3_NO, "0");
-		values.put(Q_SUPERVISORY_4_NO, "0");
-		values.put(Q_SUPERVISORY_5_NO, "0");
-		values.put(Q_SUPERVISORY_6_NO, "0");
-		values.put(Q_SUPERVISORY_7_NO, "0");
-		values.put(Q_MONITORING_1_YES, "0");
-		values.put(Q_MONITORING_2_YES, "0");
-		values.put(Q_MONITORING_3_YES, "0");
-		values.put(Q_MONITORING_1_NO, "0");
-		values.put(Q_MONITORING_2_NO, "0");
-		values.put(Q_MONITORING_3_NO, "0");
-		values.put(Q_NOTIFICATION_RESUME_1_YES, "0");
-		values.put(Q_NOTIFICATION_RESUME_2_YES, "0");
-		values.put(Q_NOTIFICATION_RESUME_3_YES, "0");
-		values.put(Q_NOTIFICATION_RESUME_1_NO, "0");
-		values.put(Q_NOTIFICATION_RESUME_2_NO, "0");
-		values.put(Q_NOTIFICATION_RESUME_3_NO, "0");
+		// values.put(Q_NOTIFY_1_YES, "0");
+		// values.put(Q_NOTIFY_2_YES, "0");
+		// values.put(Q_NOTIFY_3_YES, "0");
+		// values.put(Q_NOTIFY_1_NO, "0");
+		// values.put(Q_NOTIFY_2_NO, "0");
+		// values.put(Q_NOTIFY_3_NO, "0");
+		// values.put(Q_SYSTEM_1_YES, "0");
+		// values.put(Q_SYSTEM_2_YES, "0");
+		// values.put(Q_SYSTEM_3_YES, "0");
+		// values.put(Q_SYSTEM_4_YES, "0");
+		// values.put(Q_SYSTEM_5_YES, "0");
+		// values.put(Q_SYSTEM_6_YES, "0");
+		// values.put(Q_SYSTEM_7_YES, "0");
+		// values.put(Q_SYSTEM_8_YES, "0");
+		// values.put(Q_SYSTEM_9_YES, "0");
+		// values.put(Q_SYSTEM_10_YES, "0");
+		// values.put(Q_SYSTEM_11_YES, "0");
+		// values.put(Q_SYSTEM_12_YES, "0");
+		// values.put(Q_SYSTEM_13_YES, "0");
+		// values.put(Q_SYSTEM_14_YES, "0");
+		// values.put(Q_SYSTEM_1_NO, "0");
+		// values.put(Q_SYSTEM_2_NO, "0");
+		// values.put(Q_SYSTEM_3_NO, "0");
+		// values.put(Q_SYSTEM_4_NO, "0");
+		// values.put(Q_SYSTEM_5_NO, "0");
+		// values.put(Q_SYSTEM_6_NO, "0");
+		// values.put(Q_SYSTEM_7_NO, "0");
+		// values.put(Q_SYSTEM_8_NO, "0");
+		// values.put(Q_SYSTEM_9_NO, "0");
+		// values.put(Q_SYSTEM_10_NO, "0");
+		// values.put(Q_SYSTEM_11_NO, "0");
+		// values.put(Q_SYSTEM_12_NO, "0");
+		// values.put(Q_SYSTEM_13_NO, "0");
+		// values.put(Q_SYSTEM_14_NO, "0");
+		// values.put(Q_SUPERVISORY_1_YES, "0");
+		// values.put(Q_SUPERVISORY_2_YES, "0");
+		// values.put(Q_SUPERVISORY_3_YES, "0");
+		// values.put(Q_SUPERVISORY_4_YES, "0");
+		// values.put(Q_SUPERVISORY_5_YES, "0");
+		// values.put(Q_SUPERVISORY_6_YES, "0");
+		// values.put(Q_SUPERVISORY_7_YES, "0");
+		// values.put(Q_SUPERVISORY_1_NO, "0");
+		// values.put(Q_SUPERVISORY_2_NO, "0");
+		// values.put(Q_SUPERVISORY_3_NO, "0");
+		// values.put(Q_SUPERVISORY_4_NO, "0");
+		// values.put(Q_SUPERVISORY_5_NO, "0");
+		// values.put(Q_SUPERVISORY_6_NO, "0");
+		// values.put(Q_SUPERVISORY_7_NO, "0");
+		// values.put(Q_MONITORING_1_YES, "0");
+		// values.put(Q_MONITORING_2_YES, "0");
+		// values.put(Q_MONITORING_3_YES, "0");
+		// values.put(Q_MONITORING_1_NO, "0");
+		// values.put(Q_MONITORING_2_NO, "0");
+		// values.put(Q_MONITORING_3_NO, "0");
+		// values.put(Q_NOTIFICATION_RESUME_1_YES, "0");
+		// values.put(Q_NOTIFICATION_RESUME_2_YES, "0");
+		// values.put(Q_NOTIFICATION_RESUME_3_YES, "0");
+		// values.put(Q_NOTIFICATION_RESUME_1_NO, "0");
+		// values.put(Q_NOTIFICATION_RESUME_2_NO, "0");
+		// values.put(Q_NOTIFICATION_RESUME_3_NO, "0");
+
+		Cursor ti = db.rawQuery("PRAGMA table_info(" + TABLE_QUESTION + ")", null);
+		if (ti.moveToFirst()) {
+			do {
+				values.put(ti.getString(1), 0);
+			} while (ti.moveToNext());
+		}
+		
+		values.remove("_id");
 
 		Long id = db.insert(TABLE_QUESTION, null, values);
 		closeDb();
 		return id;
 	}
 
-	public void updateQuestion(Map<String, String> question, Long id) {
+	public void updateQuestion(String dbColumn, Boolean isChecked, Long id) {
 		db = dbHelper.getWritableDatabase();
 		ContentValues values = new ContentValues();
-
-		addContentValue("", "", values);
+		values.put(dbColumn, isChecked ? 1 : 0);
 
 		db.update(TABLE_QUESTION, values, BaseColumns._ID + "=" + id, null);
+		closeDb();
 	}
 
 	public Cursor getQuestionsFromDB(Long id) {

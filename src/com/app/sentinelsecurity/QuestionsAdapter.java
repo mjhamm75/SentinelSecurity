@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.app.sentinelsecurity.domain.DbData;
 import com.app.sentinelsecurity.domain.Question;
 
 public class QuestionsAdapter extends ArrayAdapter<Question> {
@@ -21,12 +22,14 @@ public class QuestionsAdapter extends ArrayAdapter<Question> {
 	List<Question> questions = new ArrayList<Question>();
 	QuestionHolder holder = null;
 	ListView list;
+	final DbData dbData;
 
-	public QuestionsAdapter(ListActivity activity, Context context, List<Question> questions, Long id) {
+	public QuestionsAdapter(ListActivity activity, Context context, List<Question> questions, Long id, DbData dbData) {
 		super(context, R.layout.row_questions, questions);
 		this.questions = questions;
 		this.context = context;
 		list = activity.getListView();
+		this.dbData = dbData;
 	}
 
 	@Override
@@ -54,7 +57,9 @@ public class QuestionsAdapter extends ArrayAdapter<Question> {
 
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				final int position = list.getPositionForView(buttonView);
+				Question question = (Question) buttonView.getTag();
+				question.setIsYesChecked(isChecked);
+				dbData.updateQuestion(question.getDbYesColumn(), isChecked, 1L);
 				LinearLayout l = (LinearLayout) buttonView.getParent();
 				CheckBox c2 = (CheckBox) l.getChildAt(1);
 				if (isChecked) {
@@ -66,7 +71,9 @@ public class QuestionsAdapter extends ArrayAdapter<Question> {
 
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				final int position = list.getPositionForView(buttonView);
+				Question question = (Question) buttonView.getTag();
+				question.setIsNoChecked(isChecked);
+				dbData.updateQuestion(question.getDbNoColumn(), isChecked, 1L);
 				LinearLayout l = (LinearLayout) buttonView.getParent();
 				CheckBox c1 = (CheckBox) l.getChildAt(0);
 				if (isChecked) {
@@ -82,14 +89,4 @@ public class QuestionsAdapter extends ArrayAdapter<Question> {
 		CheckBox yes;
 		CheckBox no;
 	}
-
-	// @Override
-	// public void onCheckedChanged(CompoundButton buttonView, boolean
-	// isChecked) {
-	//
-	// LinearLayout l = (LinearLayout) buttonView.getParent();
-	// CheckBox c1 = (CheckBox) l.getChildAt(0);
-	// CheckBox c2 = (CheckBox) l.getChildAt(1);
-	//
-	// }
 }

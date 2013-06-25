@@ -31,7 +31,7 @@ public abstract class ListActivity extends Activity {
 		setContentView(R.layout.activity_questions);
 		items = (ListView) findViewById(R.id.items);
 		createHeader();
-		items.setAdapter(new QuestionsAdapter(this, getCurrentContext(), questions, 1L));
+		items.setAdapter(new QuestionsAdapter(this, getCurrentContext(), questions, 1L, dbData));
 
 		Button next = (Button) findViewById(R.id.button_next);
 		next.setOnClickListener(new View.OnClickListener() {
@@ -101,8 +101,6 @@ public abstract class ListActivity extends Activity {
 	private List<Question> getQuestionsFromCursor(Cursor cursor) {
 		cursor.moveToFirst();
 		for (Question question : questions) {
-			// String checked =
-			// cursor.getString(cursor.getColumnIndex(question.getDbColumn()));
 			int checkedYes = cursor.getInt(cursor.getColumnIndex(question.getDbYesColumn()));
 			question.setIsYesChecked(checkedYes == 0 ? false : true);
 			int checkedNo = cursor.getInt(cursor.getColumnIndex(question.getDbNoColumn()));
