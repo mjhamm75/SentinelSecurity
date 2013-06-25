@@ -241,12 +241,6 @@ public class DbData {
 		this.closeDb();
 	}
 
-	private void addContentValue(String name, String value, ContentValues values) {
-		if (value != null && !value.equals("")) {
-			values.put(name, value);
-		}
-	}
-
 	private void closeDb() {
 		db.close();
 	}
