@@ -49,15 +49,20 @@ public class QuestionsAdapter extends ArrayAdapter<Question> {
 		}
 		Question question = questions.get(position);
 		holder.question.setText(question.getQuestion());
-		holder.yes.setChecked(question.getIsYesChecked() ? true : false);
-		holder.no.setChecked(question.getIsNoChecked() ? true : false);
+		if (question.getIsYesChecked()) {
+			holder.yes.setChecked(true);
+		}
+		if (question.getIsNoChecked()) {
+			holder.no.setChecked(true);
+		}
+
 		holder.yes.setTag(getItem(position));
 		holder.no.setTag(getItem(position));
 		holder.yes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				updateQuestion((Question) buttonView.getTag(), isChecked);
+				updateQuestion((Question) buttonView.getTag(), isChecked, "yes");
 				LinearLayout l = (LinearLayout) buttonView.getParent();
 				CheckBox c2 = (CheckBox) l.getChildAt(1);
 				if (isChecked) {
@@ -69,7 +74,7 @@ public class QuestionsAdapter extends ArrayAdapter<Question> {
 
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				updateQuestion((Question) buttonView.getTag(), isChecked);
+				updateQuestion((Question) buttonView.getTag(), isChecked, "no");
 				LinearLayout l = (LinearLayout) buttonView.getParent();
 				CheckBox c1 = (CheckBox) l.getChildAt(0);
 				if (isChecked) {
@@ -80,8 +85,12 @@ public class QuestionsAdapter extends ArrayAdapter<Question> {
 		return row;
 	}
 
-	public void updateQuestion(Question question, Boolean isChecked) {
-		question.setIsNoChecked(isChecked);
+	public void updateQuestion(Question question, Boolean isChecked, String yesOrNo) {
+		if (yesOrNo.equals("no")) {
+			question.setIsNoChecked(isChecked);
+		} else {
+			question.setIsYesChecked(isChecked);
+		}
 		dbData.updateQuestion(question.getDbNoColumn(), isChecked, 1L);
 	}
 
