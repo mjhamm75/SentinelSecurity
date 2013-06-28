@@ -49,13 +49,9 @@ public class QuestionsAdapter extends ArrayAdapter<Question> {
 		}
 		Question question = questions.get(position);
 		holder.question.setText(question.getQuestion());
-		if (question.getIsYesChecked()) {
-			holder.yes.setChecked(true);
-		}
-		if (question.getIsNoChecked()) {
-			holder.no.setChecked(true);
-		}
-
+		
+		setStateCheckboxes(holder, question);
+		
 		holder.yes.setTag(getItem(position));
 		holder.no.setTag(getItem(position));
 		holder.yes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -83,6 +79,15 @@ public class QuestionsAdapter extends ArrayAdapter<Question> {
 			}
 		});
 		return row;
+	}
+	
+	private void setStateCheckboxes(QuestionHolder holder, Question question) {
+		if(question.getIsYesChecked()) {
+			holder.yes.setChecked(true);
+		}
+		if(question.getIsNoChecked()) {
+			holder.no.setChecked(true);
+		}
 	}
 
 	public void updateQuestion(Question question, Boolean isChecked, String yesOrNo) {
