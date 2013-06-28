@@ -51,8 +51,15 @@ public class SingleQuestionActivity extends Activity {
 		});
 
 		final CheckBox yes = (CheckBox) findViewById(R.id.yes_single);
+		boolean isYesChecked = getIntent().getBooleanExtra("yesChecked", false);
+		if (isYesChecked) {
+			yes.setChecked(true);
+		}
 		final CheckBox no = (CheckBox) findViewById(R.id.no_single);
-
+		boolean isNoChecked = getIntent().getBooleanExtra("noChecked", false);
+		if (isNoChecked) {
+			no.setChecked(true);
+		}
 		yes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
 			@Override

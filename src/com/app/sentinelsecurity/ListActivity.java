@@ -57,6 +57,8 @@ public abstract class ListActivity extends Activity {
 				final Question item = (Question) parent.getItemAtPosition(position);
 				Intent i = new Intent(getApplicationContext(), SingleQuestionActivity.class);
 				i.putExtra("question", item.getQuestion());
+				i.putExtra("yesChecked", item.getIsYesChecked());
+				i.putExtra("noChecked", item.getIsNoChecked());
 				startActivity(i);
 			}
 		});
