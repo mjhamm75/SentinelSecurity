@@ -30,7 +30,7 @@ public class NotificationResumeActivity extends ListActivity {
 
 	@Override
 	protected Class<?> getNextClass() {
-		return NotificationActivity.class;
+		return FinalActivity.class;
 	}
 
 	@Override
