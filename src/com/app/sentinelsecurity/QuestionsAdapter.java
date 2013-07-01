@@ -55,7 +55,7 @@ public class QuestionsAdapter extends ArrayAdapter<Question> {
 		holder.yes.setTag(getItem(position));
 		holder.no.setTag(getItem(position));
 
-		CompoundButton.OnCheckedChangeListener listenYes = new CompoundButton.OnCheckedChangeListener() {
+		CompoundButton.OnCheckedChangeListener listen = new CompoundButton.OnCheckedChangeListener() {
 			boolean proceed = true;
 
 			@Override
@@ -91,7 +91,7 @@ public class QuestionsAdapter extends ArrayAdapter<Question> {
 			}
 		};
 
-		holder.yes.setOnCheckedChangeListener(listenYes);
+		holder.yes.setOnCheckedChangeListener(listen);
 
 		// CompoundButton.OnCheckedChangeListener listenNo = new
 		// CompoundButton.OnCheckedChangeListener() {
@@ -108,7 +108,7 @@ public class QuestionsAdapter extends ArrayAdapter<Question> {
 		// }
 		// };
 
-		holder.no.setOnCheckedChangeListener(listenYes);
+		holder.no.setOnCheckedChangeListener(listen);
 		return row;
 	}
 
