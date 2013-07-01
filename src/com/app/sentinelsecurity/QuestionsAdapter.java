@@ -49,43 +49,53 @@ public class QuestionsAdapter extends ArrayAdapter<Question> {
 		}
 		Question question = questions.get(position);
 		holder.question.setText(question.getQuestion());
-		
+
 		setStateCheckboxes(holder, question);
-		
+
 		holder.yes.setTag(getItem(position));
 		holder.no.setTag(getItem(position));
-		holder.yes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				updateQuestion((Question) buttonView.getTag(), isChecked, "yes");
-				LinearLayout l = (LinearLayout) buttonView.getParent();
-				CheckBox c2 = (CheckBox) l.getChildAt(1);
-				if (isChecked) {
-					c2.setChecked(false);
-				}
-			}
-		});
-		holder.no.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				updateQuestion((Question) buttonView.getTag(), isChecked, "no");
-				LinearLayout l = (LinearLayout) buttonView.getParent();
-				CheckBox c1 = (CheckBox) l.getChildAt(0);
-				if (isChecked) {
-					c1.setChecked(false);
-				}
-			}
-		});
+		holder.yes.setOnCheckedChangeListener(listenYes);
+		holder.no.setOnCheckedChangeListener(listenNo);
 		return row;
 	}
-	
+
+	CompoundButton.OnCheckedChangeListener listenNo = new CompoundButton.OnCheckedChangeListener() {
+		@Override
+		public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+			updateQuestion((Question) buttonView.getTag(), isChecked, "no");
+			LinearLayout l = (LinearLayout) buttonView.getParent();
+			CheckBox c1 = (CheckBox) l.getChildAt(0);
+			if (isChecked) {
+				
+				c1.setChecked(false);
+				updateQuestion((Question) buttonView.getTag(), !isChecked, "yes");
+				
+			}
+		}
+	};
+
+	CompoundButton.OnCheckedChangeListener listenYes = new CompoundButton.OnCheckedChangeListener() {
+
+		@Override
+		public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+			updateQuestion((Question) buttonView.getTag(), isChecked, "yes");
+			LinearLayout l = (LinearLayout) buttonView.getParent();
+			CheckBox c2 = (CheckBox) l.getChildAt(1);
+			if (isChecked) {
+				
+				c2.setChecked(false);
+				updateQuestion((Question) buttonView.getTag(), !isChecked, "no");
+				
+			}
+
+		}
+	};
+
 	private void setStateCheckboxes(QuestionHolder holder, Question question) {
-		if(question.getIsYesChecked()) {
+		if (question.getIsYesChecked()) {
 			holder.yes.setChecked(true);
 		}
-		if(question.getIsNoChecked()) {
+		if (question.getIsNoChecked()) {
 			holder.no.setChecked(true);
 		}
 	}
