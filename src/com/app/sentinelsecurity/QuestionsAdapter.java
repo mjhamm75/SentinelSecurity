@@ -54,42 +54,63 @@ public class QuestionsAdapter extends ArrayAdapter<Question> {
 
 		holder.yes.setTag(getItem(position));
 		holder.no.setTag(getItem(position));
+
+		CompoundButton.OnCheckedChangeListener listenYes = new CompoundButton.OnCheckedChangeListener() {
+			boolean proceed = true;
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				switch (buttonView.getId()) {
+				case R.id.yes:
+					if (proceed == true) {
+						proceed = false;
+						updateQuestion((Question) buttonView.getTag(), isChecked, "yes");
+						LinearLayout l = (LinearLayout) buttonView.getParent();
+						CheckBox c2 = (CheckBox) l.getChildAt(1);
+						if (isChecked) {
+							c2.setChecked(false);
+							updateQuestion((Question) buttonView.getTag(), !isChecked, "no");
+						}
+						proceed = true;
+						break;
+					}
+				case R.id.no:
+					if (proceed == true) {
+						proceed = false;
+						updateQuestion((Question) buttonView.getTag(), isChecked, "no");
+						LinearLayout l2 = (LinearLayout) buttonView.getParent();
+						CheckBox c1 = (CheckBox) l2.getChildAt(0);
+						if (isChecked) {
+							c1.setChecked(false);
+							updateQuestion((Question) buttonView.getTag(), !isChecked, "yes");
+						}
+						proceed = true;
+						break;
+					}
+				}
+			}
+		};
+
 		holder.yes.setOnCheckedChangeListener(listenYes);
-		holder.no.setOnCheckedChangeListener(listenNo);
+
+		// CompoundButton.OnCheckedChangeListener listenNo = new
+		// CompoundButton.OnCheckedChangeListener() {
+		// @Override
+		// public void onCheckedChanged(CompoundButton buttonView, boolean
+		// isChecked) {
+		// updateQuestion((Question) buttonView.getTag(), isChecked, "no");
+		// LinearLayout l = (LinearLayout) buttonView.getParent();
+		// CheckBox c1 = (CheckBox) l.getChildAt(0);
+		// if (isChecked) {
+		// c1.setChecked(false);
+		// updateQuestion((Question) buttonView.getTag(), !isChecked, "yes");
+		// }
+		// }
+		// };
+
+		holder.no.setOnCheckedChangeListener(listenYes);
 		return row;
 	}
-
-	CompoundButton.OnCheckedChangeListener listenNo = new CompoundButton.OnCheckedChangeListener() {
-		@Override
-		public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-			updateQuestion((Question) buttonView.getTag(), isChecked, "no");
-			LinearLayout l = (LinearLayout) buttonView.getParent();
-			CheckBox c1 = (CheckBox) l.getChildAt(0);
-			if (isChecked) {
-				
-				c1.setChecked(false);
-				updateQuestion((Question) buttonView.getTag(), !isChecked, "yes");
-				
-			}
-		}
-	};
-
-	CompoundButton.OnCheckedChangeListener listenYes = new CompoundButton.OnCheckedChangeListener() {
-
-		@Override
-		public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-			updateQuestion((Question) buttonView.getTag(), isChecked, "yes");
-			LinearLayout l = (LinearLayout) buttonView.getParent();
-			CheckBox c2 = (CheckBox) l.getChildAt(1);
-			if (isChecked) {
-				
-				c2.setChecked(false);
-				updateQuestion((Question) buttonView.getTag(), !isChecked, "no");
-				
-			}
-
-		}
-	};
 
 	private void setStateCheckboxes(QuestionHolder holder, Question question) {
 		if (question.getIsYesChecked()) {
