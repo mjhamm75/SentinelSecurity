@@ -35,8 +35,6 @@ public class PdfBuilder {
 	public static final Font NORMAL_BOLD = new Font(Font.TIMES_ROMAN, 10, Font.BOLD);
 	public static final Font NORMAL_SMALL = new Font(Font.TIMES_ROMAN, 8);
 
-	/** Path to the resulting PDF file. */
-
 	public void createPdf(File file) throws DocumentException, IOException {
 		CreatePdf(file);
 	}
