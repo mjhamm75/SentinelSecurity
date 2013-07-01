@@ -69,7 +69,7 @@ public class QuestionsAdapter extends ArrayAdapter<Question> {
 						CheckBox c2 = (CheckBox) l.getChildAt(1);
 						if (isChecked) {
 							c2.setChecked(false);
-							updateQuestion((Question) buttonView.getTag(), !isChecked, "no");
+							updateQuestion((Question) buttonView.getTag(), false, "no");
 						}
 						proceed = true;
 						break;
@@ -82,7 +82,7 @@ public class QuestionsAdapter extends ArrayAdapter<Question> {
 						CheckBox c1 = (CheckBox) l2.getChildAt(0);
 						if (isChecked) {
 							c1.setChecked(false);
-							updateQuestion((Question) buttonView.getTag(), !isChecked, "yes");
+							updateQuestion((Question) buttonView.getTag(), false, "yes");
 						}
 						proceed = true;
 						break;
@@ -124,10 +124,11 @@ public class QuestionsAdapter extends ArrayAdapter<Question> {
 	public void updateQuestion(Question question, Boolean isChecked, String yesOrNo) {
 		if (yesOrNo.equals("no")) {
 			question.setIsNoChecked(isChecked);
+			dbData.updateQuestion(question.getDbNoColumn(), isChecked, 1L);
 		} else {
 			question.setIsYesChecked(isChecked);
+			dbData.updateQuestion(question.getDbYesColumn(), isChecked, 1L);
 		}
-		dbData.updateQuestion(question.getDbNoColumn(), isChecked, 1L);
 	}
 
 	public class QuestionHolder {
