@@ -92,22 +92,6 @@ public class QuestionsAdapter extends ArrayAdapter<Question> {
 		};
 
 		holder.yes.setOnCheckedChangeListener(listen);
-
-		// CompoundButton.OnCheckedChangeListener listenNo = new
-		// CompoundButton.OnCheckedChangeListener() {
-		// @Override
-		// public void onCheckedChanged(CompoundButton buttonView, boolean
-		// isChecked) {
-		// updateQuestion((Question) buttonView.getTag(), isChecked, "no");
-		// LinearLayout l = (LinearLayout) buttonView.getParent();
-		// CheckBox c1 = (CheckBox) l.getChildAt(0);
-		// if (isChecked) {
-		// c1.setChecked(false);
-		// updateQuestion((Question) buttonView.getTag(), !isChecked, "yes");
-		// }
-		// }
-		// };
-
 		holder.no.setOnCheckedChangeListener(listen);
 		return row;
 	}
