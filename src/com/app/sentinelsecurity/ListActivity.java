@@ -59,6 +59,8 @@ public abstract class ListActivity extends Activity {
 				i.putExtra("question", item.getQuestion());
 				i.putExtra("yesChecked", item.getIsYesChecked());
 				i.putExtra("noChecked", item.getIsNoChecked());
+				i.putExtra("dbYesColumn", item.getDbYesColumn());
+				i.putExtra("dbNoColumn", item.getDbNoColumn());
 				startActivity(i);
 			}
 		});

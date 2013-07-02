@@ -13,15 +13,21 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.app.sentinelsecurity.domain.DbData;
+import com.app.sentinelsecurity.domain.Question;
+
 public class SingleQuestionActivity extends Activity {
 	protected static final int RESULT_SPEECH = 1;
+	DbData dbData;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		dbData = new DbData(this);
 		this.setContentView(R.layout.single_question);
 
 		Button back = (Button) findViewById(R.id.button_back_single);
@@ -50,30 +56,58 @@ public class SingleQuestionActivity extends Activity {
 			}
 		});
 
-		final CheckBox yes = (CheckBox) findViewById(R.id.yes_single);
-		final CheckBox no = (CheckBox) findViewById(R.id.no_single);
+		CheckBox yes = (CheckBox) findViewById(R.id.yes_single);
+		CheckBox no = (CheckBox) findViewById(R.id.no_single);
 
-		yes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				if (isChecked) {
-					no.setChecked(false);
-				}
-			}
-		});
-		no.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+		CompoundButton.OnCheckedChangeListener listen = new CompoundButton.OnCheckedChangeListener() {
+			boolean proceed = true;
 
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				if (isChecked) {
-					yes.setChecked(false);
+				switch (buttonView.getId()) {
+				case R.id.yes_single:
+					if (proceed == true) {
+						proceed = false;
+						updateQuestion((Question) buttonView.getTag(), isChecked, "yes");
+						LinearLayout l = (LinearLayout) buttonView.getParent();
+						CheckBox c2 = (CheckBox) l.getChildAt(1);
+						if (isChecked) {
+							c2.setChecked(false);
+							updateQuestion((Question) buttonView.getTag(), false, "no");
+						}
+						proceed = true;
+						break;
+					}
+				case R.id.no_single:
+					if (proceed == true) {
+						proceed = false;
+						updateQuestion((Question) buttonView.getTag(), isChecked, "no");
+						LinearLayout l2 = (LinearLayout) buttonView.getParent();
+						CheckBox c1 = (CheckBox) l2.getChildAt(0);
+						if (isChecked) {
+							c1.setChecked(false);
+							updateQuestion((Question) buttonView.getTag(), false, "yes");
+						}
+						proceed = true;
+						break;
+					}
 				}
 			}
-		});
+		};
+
+		yes.setOnCheckedChangeListener(listen);
+		no.setOnCheckedChangeListener(listen);
 
 		setQuestionText();
 		setCheckboxesStatus(yes, no);
+	}
+
+	public void updateQuestion(Question question, Boolean isChecked, String yesOrNo) {
+		if (yesOrNo.equals("no")) {
+			dbData.updateQuestion(getIntent().getStringExtra("dbNoColumn"), isChecked, 1L);
+		} else {
+			dbData.updateQuestion(getIntent().getStringExtra("dbYesColumn"), isChecked, 1L);
+		}
 	}
 
 	private void setCheckboxesStatus(CheckBox yes, CheckBox no) {
