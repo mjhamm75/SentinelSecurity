@@ -105,6 +105,7 @@ public class SingleQuestionActivity extends Activity {
 	public void updateQuestion(Question question, Boolean isChecked, String yesOrNo) {
 		if (yesOrNo.equals("no")) {
 			dbData.updateQuestion(getIntent().getStringExtra("dbNoColumn"), isChecked, 1L);
+			
 		} else {
 			dbData.updateQuestion(getIntent().getStringExtra("dbYesColumn"), isChecked, 1L);
 		}
@@ -113,7 +114,7 @@ public class SingleQuestionActivity extends Activity {
 	private void setCheckboxesStatus(CheckBox yes, CheckBox no) {
 		boolean isYesChecked = getIntent().getBooleanExtra("yesChecked", false);
 		if (isYesChecked) {
-			yes.setChecked(true);
+			yes.setChecked(true);			
 		}
 		boolean isNoChecked = getIntent().getBooleanExtra("noChecked", false);
 		if (isNoChecked) {
