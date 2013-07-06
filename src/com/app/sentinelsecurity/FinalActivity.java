@@ -1,18 +1,15 @@
 package com.app.sentinelsecurity;
 
 import java.io.File;
-import java.io.IOException;
-
-import com.lowagie.text.DocumentException;
 
 import android.app.Activity;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class FinalActivity extends Activity {
 
@@ -26,37 +23,27 @@ public class FinalActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// Document document = new Document();
-				// try {
-				//
-				File file = new File(Environment.getExternalStorageDirectory() + File.separator + "droidText" + File.separator + "Test.pdf");
-				//
-				// PdfWriter.getInstance(document,
-				// new FileOutputStream(file));
-				//
-				// // step 3: we open the document
-				// document.open();
-				// // step 4: we add a paragraph to the document
-				// document.add(new Paragraph("Hello World"));
-				// } catch (DocumentException de) {
-				// System.err.println(de.getMessage());
-				// } catch (IOException ioe) {
-				// System.err.println(ioe.getMessage());
-				// }
-				//
-				// // step 5: we close the document
-				// document.close();
-				
+				File file = new File(Environment.getExternalStorageDirectory() + File.separator + "droidText"
+						+ File.separator + "Test.pdf");
 				try {
 					new PdfBuilder().createPdf(file);
-				} catch (DocumentException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
-}
+				
+				Intent intent = new Intent(Intent.ACTION_SEND);
+				intent.setType("text/pdf");
+				intent.putExtra(Intent.EXTRA_EMAIL, new String[] {"jhamm.business@.com"});
+				intent.putExtra(Intent.EXTRA_SUBJECT, "PDF file");
+				intent.putExtra(Intent.EXTRA_TEXT, "Test");
+				if (!file.exists() || !file.canRead()) {
+				    finish();
+				    return;
+				}
+				Uri uri = Uri.parse(file.getAbsolutePath());
+				intent.putExtra(Intent.EXTRA_STREAM, uri);
+				startActivity(Intent.createChooser(intent, "Send email..."));
+			}
 		});
 	}
 

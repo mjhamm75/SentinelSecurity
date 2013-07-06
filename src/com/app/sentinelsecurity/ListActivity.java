@@ -20,7 +20,6 @@ public abstract class ListActivity extends Activity {
 	ListView items;
 	DbData dbData;
 	List<Question> questions;
-	QuestionsAdapter adapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +31,7 @@ public abstract class ListActivity extends Activity {
 		setContentView(R.layout.activity_questions);
 		items = (ListView) findViewById(R.id.items);
 		createHeader();
-		adapter = new QuestionsAdapter(this, getCurrentContext(), questions, 1L, dbData);
-		items.setAdapter(adapter);
+		items.setAdapter(new QuestionsAdapter(this, getCurrentContext(), questions, 1L, dbData));
 
 		Button next = (Button) findViewById(R.id.button_next);
 		next.setOnClickListener(new View.OnClickListener() {
@@ -66,12 +64,6 @@ public abstract class ListActivity extends Activity {
 				startActivity(i);
 			}
 		});
-	}
-
-	@Override
-	protected void onResume() {
-		super.onResume();
-		adapter.notifyDataSetChanged();
 	}
 
 	private void createHeader() {

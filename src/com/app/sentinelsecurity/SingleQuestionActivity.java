@@ -114,7 +114,7 @@ public class SingleQuestionActivity extends Activity {
 	private void setCheckboxesStatus(CheckBox yes, CheckBox no) {
 		boolean isYesChecked = getIntent().getBooleanExtra("yesChecked", false);
 		if (isYesChecked) {
-			yes.setChecked(true);			
+			yes.setChecked(true);
 		}
 		boolean isNoChecked = getIntent().getBooleanExtra("noChecked", false);
 		if (isNoChecked) {
