@@ -25,14 +25,13 @@ public abstract class ListActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		dbData = new DbData(this);
+		
 		questions = getQuestions(1L);
 
 		setContentView(R.layout.activity_questions);
 		items = (ListView) findViewById(R.id.items);
 		createHeader();
-		adapter = new QuestionsAdapter(this, getCurrentContext(), questions, 1L, dbData);
+		adapter = new QuestionsAdapter(this, getCurrentContext(), questions, 1L, getDbData());
 		items.setAdapter(adapter);
 
 		Button next = (Button) findViewById(R.id.button_next);
@@ -99,12 +98,12 @@ public abstract class ListActivity extends Activity {
 	}
 
 	private List<Question> getQuestions(Long id) {
-		Cursor cursor1 = dbData.getQuestionsFromDB(1L);
+		Cursor cursor1 = getDbData().getQuestionsFromDB(1L);
 		if (cursor1 == null) {
 			questions = getQuestionsList();
 		} else {
 			questions = getQuestionsList();
-			Cursor cursor = dbData.getQuestionsFromDB(1L);
+			Cursor cursor = getDbData().getQuestionsFromDB(1L);
 			questions = getQuestionsFromCursor(cursor);
 
 		}
@@ -120,5 +119,13 @@ public abstract class ListActivity extends Activity {
 			question.setIsNoChecked(checkedNo == 0 ? false : true);
 		}
 		return questions;
+	}
+	
+	public DbData getDbData() {
+		if(dbData == null) {
+			return new DbData(this);			
+		} else {
+			return dbData;
+		}
 	}
 }
