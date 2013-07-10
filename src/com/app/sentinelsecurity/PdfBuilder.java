@@ -40,32 +40,31 @@ public class PdfBuilder {
 	}
 
 	public void CreatePdf(File file) throws DocumentException, IOException {
-		// step 1
-		document = new Document();
-		// step 2
-		PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(file));
-		document.open();
-		addCompanyLogo(document);
 
-		addReportHeader(document, writer);
-		addNotficationSection(document, writer);
-		addSystemTestSection(document, writer);
-		addSupervisorySection(document, writer);
-		addMonitoringSection(document, writer);
-		addNotficationSection(document, writer);
-		addGeneralComments(document, writer);
-		addReportFooter(document, writer);
-		document.close();
+		// step 2
+		PdfWriter writer = PdfWriter.getInstance(getDocument(), new FileOutputStream(file));
+		getDocument().open();
+		addCompanyLogo();
+
+		addReportHeader(writer);
+		addNotficationSection(writer);
+		addSystemTestSection(writer);
+		addSupervisorySection(writer);
+		addMonitoringSection(writer);
+		addNotficationSection(writer);
+		addGeneralComments(writer);
+		addReportFooter(writer);
+		getDocument().close();
 	}
 
-	public void addCompanyLogo(Document document) throws DocumentException {
+	public void addCompanyLogo() throws DocumentException {
 		Paragraph preface = new Paragraph();
 		// We add one empty line
 		addEmptyLine(preface, 1);
-		document.add(preface);
+		getDocument().add(preface);
 	}
 
-	public void addReportHeader(Document document, PdfWriter writer) throws DocumentException {
+	public void addReportHeader(PdfWriter writer) throws DocumentException {
 		Chunk mediumSpace = new Chunk("               ");
 		mediumSpace.setFont(NORMAL_SMALL);
 
@@ -78,8 +77,8 @@ public class PdfBuilder {
 		firstLine.add(getSmallSpace());
 		firstLine.add(new Chunk("                                                   ", UNDERLINED));
 
-		document.add(firstLine);
-		document.add(Chunk.NEWLINE);
+		getDocument().add(firstLine);
+		getDocument().add(Chunk.NEWLINE);
 
 		Phrase secondLine = new Phrase();
 		secondLine.add(new Chunk("ADDRESS:", BOLD));
@@ -91,8 +90,8 @@ public class PdfBuilder {
 		secondLine.add(getSmallSpace());
 		secondLine.add(new Chunk("                                     ", UNDERLINED));
 
-		document.add(secondLine);
-		document.add(Chunk.NEWLINE);
+		getDocument().add(secondLine);
+		getDocument().add(Chunk.NEWLINE);
 
 		Phrase thirdLine = new Phrase();
 		thirdLine.add(new Chunk("CONTACT PERSON:", BOLD));
@@ -103,13 +102,13 @@ public class PdfBuilder {
 		thirdLine.add(getSmallSpace());
 		thirdLine.add(new Chunk("                                          ", UNDERLINED));
 
-		document.add(thirdLine);
-		document.add(Chunk.NEWLINE);
+		getDocument().add(thirdLine);
+		getDocument().add(Chunk.NEWLINE);
 
 		Chunk inspectionService = new Chunk("Inspection Service:", NORMAL_BOLD);
-		document.add(inspectionService);
+		getDocument().add(inspectionService);
 
-		document.add(Chunk.NEWLINE);
+		getDocument().add(Chunk.NEWLINE);
 
 		Phrase fourthLine = new Phrase();
 		fourthLine.add(new Chunk("Panel Manufacturer:", NORMAL_BOLD));
@@ -119,8 +118,8 @@ public class PdfBuilder {
 		fourthLine.add(new Chunk("Model Number:", NORMAL_BOLD));
 		fourthLine.add(getSmallSpace());
 		fourthLine.add(new Chunk("                                                     ", UNDERLINED));
-		document.add(fourthLine);
-		document.add(Chunk.NEWLINE);
+		getDocument().add(fourthLine);
+		getDocument().add(Chunk.NEWLINE);
 
 		Phrase fifthLine = new Phrase();
 		fifthLine.add(new Chunk("Number and Size of Lead Acid Batteries:", NORMAL_BOLD));
@@ -129,16 +128,16 @@ public class PdfBuilder {
 				.add(new Chunk(
 						"                                                                                                                 ",
 						UNDERLINED));
-		document.add(fifthLine);
+		getDocument().add(fifthLine);
 	}
 
-	public void addNotficationSection(Document document, PdfWriter writer) throws DocumentException {
+	public void addNotficationSection(PdfWriter writer) throws DocumentException {
 		String[] rows = { "Building Occupants", "Building Maintainence", "Central Station(s)" };
 		String[] columns = { "", "YES", "NO", "WHO", "TIME" };
 		createFiveColumnChecklist(columns, rows, writer);
 	}
 
-	public void addSystemTestSection(Document document, PdfWriter writer) throws DocumentException {
+	public void addSystemTestSection(PdfWriter writer) throws DocumentException {
 		String[] rows = { "Control Panel", "Interface Equipment", "Lamps/LEDS/Fuses", "Primary Power Supply",
 				"Trouble Signals", "Disconnect Switch", "Grnd. Fault Monitoring", "Battery Condition", "Load Voltage",
 				"Discharge Test", "Charger Test", "Remote Annunciators", "Notification Appliances",
@@ -147,20 +146,20 @@ public class PdfBuilder {
 		createFourColumnChecklist(columns, rows, writer);
 	}
 
-	private void addSupervisorySection(Document document, PdfWriter writer) throws DocumentException {
+	private void addSupervisorySection(PdfWriter writer) throws DocumentException {
 		String[] rows = { "Smoke Detectors", "Pull Stations", "Waterflows", "Tampers", "Duct Detectors",
 				"Heat Detectors", "Others" };
 		String[] columns = { "TYPE", "VISUAL", "FUNCTIONAL", "LOCATION/COMMENT" };
 		createFourColumnChecklist(columns, rows, writer);
 	}
 
-	private void addMonitoringSection(Document document, PdfWriter writer) throws DocumentException {
+	private void addMonitoringSection(PdfWriter writer) throws DocumentException {
 		String[] rows = { "Alarm Signals/Restore", "Trouble Signal/Restore", "Supervisory" };
 		String[] columns = { "", "YES", "NO", "TIME", "COMMENTS" };
 		createFiveColumnChecklist(columns, rows, writer);
 	}
 
-	private void addGeneralComments(Document document, PdfWriter writer) throws DocumentException {
+	private void addGeneralComments(PdfWriter writer) throws DocumentException {
 		Chunk generalComments = new Chunk("General Comments:");
 		Chunk underline = new Chunk(
 				"                                                                                                                                        ",
@@ -168,31 +167,31 @@ public class PdfBuilder {
 		Chunk underline2 = new Chunk(
 				"                                                                                                                                                                                ",
 				UNDERLINED);
-		document.add(generalComments);
-		document.add(getSmallSpace());
-		document.add(underline);
-		document.add(underline2);
-		document.add(underline2);
-		document.add(underline2);
-		document.add(underline2);
+		getDocument().add(generalComments);
+		getDocument().add(getSmallSpace());
+		getDocument().add(underline);
+		getDocument().add(underline2);
+		getDocument().add(underline2);
+		getDocument().add(underline2);
+		getDocument().add(underline2);
 
 	}
 
-	private void addReportFooter(Document document, PdfWriter writer) throws DocumentException {
+	private void addReportFooter(PdfWriter writer) throws DocumentException {
 		Chunk technician = new Chunk("SERVICED BY:", BOLD);
 		Chunk serviceDate = new Chunk("DATE:", BOLD);
 		Chunk serviceTime = new Chunk("TIME:", BOLD);
-		document.add(technician);
-		document.add(getSmallSpace());
-		document.add(new Chunk("                                                        ", UNDERLINED));
-		document.add(getSmallSpace());
-		document.add(serviceDate);
-		document.add(getSmallSpace());
-		document.add(new Chunk("                            ", UNDERLINED));
-		document.add(getSmallSpace());
-		document.add(serviceTime);
-		document.add(getSmallSpace());
-		document.add(new Chunk("                            ", UNDERLINED));
+		getDocument().add(technician);
+		getDocument().add(getSmallSpace());
+		getDocument().add(new Chunk("                                                        ", UNDERLINED));
+		getDocument().add(getSmallSpace());
+		getDocument().add(serviceDate);
+		getDocument().add(getSmallSpace());
+		getDocument().add(new Chunk("                            ", UNDERLINED));
+		getDocument().add(getSmallSpace());
+		getDocument().add(serviceTime);
+		getDocument().add(getSmallSpace());
+		getDocument().add(new Chunk("                            ", UNDERLINED));
 	}
 
 	private Chunk getSmallSpace() {
@@ -226,7 +225,7 @@ public class PdfBuilder {
 			table.addCell(cell);
 		}
 
-		document.add(table);
+		getDocument().add(table);
 		writer.addAnnotation(checkboxGroupField);
 
 	}
@@ -265,7 +264,7 @@ public class PdfBuilder {
 			cell = new PdfPCell(new Paragraph("                     "));
 			table.addCell(cell);
 		}
-		document.add(table);
+		getDocument().add(table);
 		writer.addAnnotation(checkboxGroupField);
 	}
 
@@ -279,10 +278,10 @@ public class PdfBuilder {
 	}
 
 	private Document getDocument() {
-		if (document != null)
-			return document;
-		else
-			return new Document();
+		if (document == null) {
+			document = new Document();
+		}
+		return document;
 	}
 
 	private static void addEmptyLine(Paragraph paragraph, int number) {
