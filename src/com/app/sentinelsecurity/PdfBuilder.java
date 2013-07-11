@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import android.database.Cursor;
+
 import com.lowagie.text.Chunk;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
@@ -23,6 +25,9 @@ import com.lowagie.text.pdf.RadioCheckField;
 
 public class PdfBuilder {
 	private Document document = null;
+	private File file = null;
+	private PdfWriter writer = null;
+	private Cursor cursor = null;
 	public final int FIELD_TYPE_TEXTAREA = 1;
 	public final int FIELD_TYPE_RADIO = 2;
 	public final int FIELD_TYPE_CHECKBOX = 3;
@@ -35,25 +40,26 @@ public class PdfBuilder {
 	public static final Font NORMAL_BOLD = new Font(Font.TIMES_ROMAN, 10, Font.BOLD);
 	public static final Font NORMAL_SMALL = new Font(Font.TIMES_ROMAN, 8);
 
-	public void createPdf(File file) throws DocumentException, IOException {
-		CreatePdf(file);
+	public void createPdf(File file, Cursor cursor) throws DocumentException, IOException {
+		this.cursor = cursor;
+		this.file = file;
+		buildPdf();
 	}
 
-	public void CreatePdf(File file) throws DocumentException, IOException {
+	public void buildPdf() throws DocumentException, IOException {
 
-		// step 2
-		PdfWriter writer = PdfWriter.getInstance(getDocument(), new FileOutputStream(file));
+		writer = PdfWriter.getInstance(getDocument(), new FileOutputStream(file));
 		getDocument().open();
 		addCompanyLogo();
 
-		addReportHeader(writer);
-		addNotficationSection(writer);
-		addSystemTestSection(writer);
-		addSupervisorySection(writer);
-		addMonitoringSection(writer);
-		addNotficationSection(writer);
-		addGeneralComments(writer);
-		addReportFooter(writer);
+		addReportHeader();
+		addNotficationSection();
+		addSystemTestSection();
+		addSupervisorySection();
+		addMonitoringSection();
+		addNotficationSection();
+		addGeneralComments();
+		addReportFooter();
 		getDocument().close();
 	}
 
@@ -64,7 +70,7 @@ public class PdfBuilder {
 		getDocument().add(preface);
 	}
 
-	public void addReportHeader(PdfWriter writer) throws DocumentException {
+	public void addReportHeader() throws DocumentException {
 		Chunk mediumSpace = new Chunk("               ");
 		mediumSpace.setFont(NORMAL_SMALL);
 
@@ -131,13 +137,13 @@ public class PdfBuilder {
 		getDocument().add(fifthLine);
 	}
 
-	public void addNotficationSection(PdfWriter writer) throws DocumentException {
+	public void addNotficationSection() throws DocumentException {
 		String[] rows = { "Building Occupants", "Building Maintainence", "Central Station(s)" };
 		String[] columns = { "", "YES", "NO", "WHO", "TIME" };
-		createFiveColumnChecklist(columns, rows, writer);
+		createFiveColumnChecklist(columns, rows);
 	}
 
-	public void addSystemTestSection(PdfWriter writer) throws DocumentException {
+	public void addSystemTestSection() throws DocumentException {
 		String[] rows = { "Control Panel", "Interface Equipment", "Lamps/LEDS/Fuses", "Primary Power Supply",
 				"Trouble Signals", "Disconnect Switch", "Grnd. Fault Monitoring", "Battery Condition", "Load Voltage",
 				"Discharge Test", "Charger Test", "Remote Annunciators", "Notification Appliances",
@@ -146,20 +152,20 @@ public class PdfBuilder {
 		createFourColumnChecklist(columns, rows, writer);
 	}
 
-	private void addSupervisorySection(PdfWriter writer) throws DocumentException {
+	private void addSupervisorySection() throws DocumentException {
 		String[] rows = { "Smoke Detectors", "Pull Stations", "Waterflows", "Tampers", "Duct Detectors",
 				"Heat Detectors", "Others" };
 		String[] columns = { "TYPE", "VISUAL", "FUNCTIONAL", "LOCATION/COMMENT" };
 		createFourColumnChecklist(columns, rows, writer);
 	}
 
-	private void addMonitoringSection(PdfWriter writer) throws DocumentException {
+	private void addMonitoringSection() throws DocumentException {
 		String[] rows = { "Alarm Signals/Restore", "Trouble Signal/Restore", "Supervisory" };
 		String[] columns = { "", "YES", "NO", "TIME", "COMMENTS" };
-		createFiveColumnChecklist(columns, rows, writer);
+		createFiveColumnChecklist(columns, rows);
 	}
 
-	private void addGeneralComments(PdfWriter writer) throws DocumentException {
+	private void addGeneralComments() throws DocumentException {
 		Chunk generalComments = new Chunk("General Comments:");
 		Chunk underline = new Chunk(
 				"                                                                                                                                        ",
@@ -177,7 +183,7 @@ public class PdfBuilder {
 
 	}
 
-	private void addReportFooter(PdfWriter writer) throws DocumentException {
+	private void addReportFooter() throws DocumentException {
 		Chunk technician = new Chunk("SERVICED BY:", BOLD);
 		Chunk serviceDate = new Chunk("DATE:", BOLD);
 		Chunk serviceTime = new Chunk("TIME:", BOLD);
@@ -204,11 +210,11 @@ public class PdfBuilder {
 			throws DocumentException {
 		PdfPTable table = createTable(new float[] { 2f, 1f, 1f, 4f }, 100f);
 		createTableHeaders(columns, table);
-		createFourColumnBody(rows, table, writer);
+		createFourColumnBody(rows, table);
 		return table;
 	}
 
-	private void createFourColumnBody(String[] rowLabels, PdfPTable table, PdfWriter writer) throws DocumentException {
+	private void createFourColumnBody(String[] rowLabels, PdfPTable table) throws DocumentException {
 		PdfFormField checkboxGroupField = PdfFormField.createCheckBox(writer);
 		for (String label : rowLabels) {
 			PdfPCell cell = table.getDefaultCell();
@@ -230,12 +236,12 @@ public class PdfBuilder {
 
 	}
 
-	private PdfPTable createFiveColumnChecklist(String[] columns, String[] rows, PdfWriter writer)
+	private PdfPTable createFiveColumnChecklist(String[] columns, String[] rows)
 			throws DocumentException {
 		PdfPTable table = createTable(new float[] { 2f, 1f, 1f, 2.5f, 1.5f }, 100f);
 
 		createTableHeaders(columns, table);
-		createFiveColumnBody(rows, table, writer);
+		createFiveColumnBody(rows, table);
 		return table;
 	}
 
@@ -246,7 +252,7 @@ public class PdfBuilder {
 		return table;
 	}
 
-	private void createFiveColumnBody(String[] rowLabels, PdfPTable table, PdfWriter writer) throws DocumentException {
+	private void createFiveColumnBody(String[] rowLabels, PdfPTable table) throws DocumentException {
 		PdfFormField checkboxGroupField = PdfFormField.createCheckBox(writer);
 		PdfPCell cell = null;
 		for (String label : rowLabels) {

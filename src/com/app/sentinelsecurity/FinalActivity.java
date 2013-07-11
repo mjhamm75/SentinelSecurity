@@ -9,7 +9,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+
+import com.app.sentinelsecurity.domain.DbData;
 
 public class FinalActivity extends Activity {
 
@@ -26,7 +27,9 @@ public class FinalActivity extends Activity {
 				File file = new File(Environment.getExternalStorageDirectory() + File.separator + "droidText"
 						+ File.separator + "Test.pdf");
 				try {
-					new PdfBuilder().createPdf(file);
+					DbData dbData = new DbData(FinalActivity.this);
+					new PdfBuilder().createPdf(file, dbData.getQuestionsFromDB(1l));
+					System.out.println("Pdf finished: " + file.getAbsolutePath());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
