@@ -3,9 +3,12 @@ package com.app.sentinelsecurity;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import android.database.Cursor;
 
+import com.app.sentinelsecurity.domain.DbData;
 import com.lowagie.text.Chunk;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
@@ -42,6 +45,7 @@ public class PdfBuilder {
 
 	public void createPdf(File file, Cursor cursor) throws DocumentException, IOException {
 		this.cursor = cursor;
+		cursor.moveToFirst();
 		this.file = file;
 		buildPdf();
 	}
@@ -137,8 +141,33 @@ public class PdfBuilder {
 		getDocument().add(fifthLine);
 	}
 
+	class YesOrNo {
+		boolean yes = false;
+		boolean no = false;
+
+		public YesOrNo(boolean yes, boolean no) {
+			this.yes = yes;
+			this.no = no;
+		}
+	}
+
+	public boolean convertIntToBoolean(int input) {
+		if (input == 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
 	public void addNotficationSection() throws DocumentException {
 		String[] rows = { "Building Occupants", "Building Maintainence", "Central Station(s)" };
+		Map<String, YesOrNo> map = new LinkedHashMap<String, YesOrNo>();
+		map.put(rows[0], new YesOrNo(convertIntToBoolean(cursor.getInt(cursor.getColumnIndex(DbData.Q_NOTIFY_1_YES))),
+				convertIntToBoolean(cursor.getInt(cursor.getColumnIndex(DbData.Q_NOTIFY_1_NO)))));
+		map.put(rows[1], new YesOrNo(convertIntToBoolean(cursor.getInt(cursor.getColumnIndex(DbData.Q_NOTIFY_2_YES))),
+				convertIntToBoolean(cursor.getInt(cursor.getColumnIndex(DbData.Q_NOTIFY_2_NO)))));
+		map.put(rows[2], new YesOrNo(convertIntToBoolean(cursor.getInt(cursor.getColumnIndex(DbData.Q_NOTIFY_3_YES))),
+				convertIntToBoolean(cursor.getInt(cursor.getColumnIndex(DbData.Q_NOTIFY_3_NO)))));
 		String[] columns = { "", "YES", "NO", "WHO", "TIME" };
 		createFiveColumnChecklist(columns, rows);
 	}
@@ -236,12 +265,19 @@ public class PdfBuilder {
 
 	}
 
-	private PdfPTable createFiveColumnChecklist(String[] columns, String[] rows)
-			throws DocumentException {
+	private PdfPTable createFiveColumnChecklist(String[] columns, String[] rows) throws DocumentException {
 		PdfPTable table = createTable(new float[] { 2f, 1f, 1f, 2.5f, 1.5f }, 100f);
 
 		createTableHeaders(columns, table);
 		createFiveColumnBody(rows, table);
+		return table;
+	}
+
+	private PdfPTable createFiveColumnChecklist(String[] columns, Map<String, YesOrNo> map) throws DocumentException {
+		PdfPTable table = createTable(new float[] { 2f, 1f, 1f, 2.5f, 1.5f }, 100f);
+
+		createTableHeaders(columns, table);
+		createFiveColumnBody(map, table);
 		return table;
 	}
 
@@ -261,7 +297,7 @@ public class PdfBuilder {
 			table.addCell(cell);
 
 			cell = new PdfPCell(table.getDefaultCell());
-			cell.setCellEvent(new CellField(writer, checkboxGroupField, true));
+			cell.setCellEvent(new CellField(writer, checkboxGroupField, false));
 			table.addCell(cell);
 			table.addCell(cell);
 
@@ -269,6 +305,32 @@ public class PdfBuilder {
 			table.addCell(cell);
 			cell = new PdfPCell(new Paragraph("                     "));
 			table.addCell(cell);
+		}
+		getDocument().add(table);
+		writer.addAnnotation(checkboxGroupField);
+	}
+
+	private void createFiveColumnBody(Map<String, YesOrNo> map, PdfPTable table) throws DocumentException {
+		PdfFormField checkboxGroupField = PdfFormField.createCheckBox(writer);
+		PdfPCell cell = null;
+		for (Map.Entry<String, YesOrNo> entry : map.entrySet()) {
+			cell = new PdfPCell(new Paragraph(entry.getKey()));
+			cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+			table.addCell(cell);
+
+			cell = new PdfPCell(table.getDefaultCell());
+			cell.setCellEvent(new CellField(writer, checkboxGroupField, entry.getValue().yes));
+			table.addCell(cell);
+
+			cell = new PdfPCell(table.getDefaultCell());
+			cell.setCellEvent(new CellField(writer, checkboxGroupField, entry.getValue().no));
+			table.addCell(cell);
+
+			cell = new PdfPCell(new Paragraph("                    "));
+			table.addCell(cell);
+			cell = new PdfPCell(new Paragraph("                     "));
+			table.addCell(cell);
+
 		}
 		getDocument().add(table);
 		writer.addAnnotation(checkboxGroupField);
