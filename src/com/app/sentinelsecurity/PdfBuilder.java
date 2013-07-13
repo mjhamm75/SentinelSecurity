@@ -256,7 +256,7 @@ public class PdfBuilder {
 			table.addCell(cell);
 			
 			cell = new PdfPCell(table.getDefaultCell());
-			cell.setCellEvent(new CellField(writer, checkboxGroupField, true));
+			cell.setCellEvent(new CellField(writer, checkboxGroupField, false));
 			table.addCell(cell);
 
 			cell = new PdfPCell(new Paragraph("                    "));
@@ -390,6 +390,7 @@ public class PdfBuilder {
 			rf.setBorderColor(GrayColor.GRAYBLACK);
 			rf.setBackgroundColor(GrayColor.GRAYWHITE);
 			rf.setCheckType(RadioCheckField.TYPE_CHECK);
+			
 			parent.addKid(rf.getCheckField());
 		}
 	}
