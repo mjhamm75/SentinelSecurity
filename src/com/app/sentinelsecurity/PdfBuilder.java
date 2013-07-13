@@ -254,6 +254,9 @@ public class PdfBuilder {
 			cell = new PdfPCell(table.getDefaultCell());
 			cell.setCellEvent(new CellField(writer, checkboxGroupField, true));
 			table.addCell(cell);
+			
+			cell = new PdfPCell(table.getDefaultCell());
+			cell.setCellEvent(new CellField(writer, checkboxGroupField, true));
 			table.addCell(cell);
 
 			cell = new PdfPCell(new Paragraph("                    "));
