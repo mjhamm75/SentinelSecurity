@@ -25,13 +25,14 @@ public abstract class ListActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+		dbData = getDbData();
 		questions = getQuestions(1L);
-
+		dbData.closeDb();
 		setContentView(R.layout.activity_questions);
+		
 		items = (ListView) findViewById(R.id.items);
 		createHeader();
-		adapter = new QuestionsAdapter(this, getCurrentContext(), questions, 1L, getDbData());
+		adapter = new QuestionsAdapter(this, getCurrentContext(), questions, 1L, dbData);
 		items.setAdapter(adapter);
 
 		Button next = (Button) findViewById(R.id.button_next);
