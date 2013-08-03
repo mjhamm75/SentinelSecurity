@@ -68,12 +68,19 @@ public abstract class ListActivity extends Activity {
 		});
 	}
 	
+	
+
 	@Override
-	protected void onRestart() {
-		// Change this
-		adapter.notifyDataSetChanged();
-		super.onRestart();
+	protected void onResume() {
+		dbData = getDbData();
+		questions = getQuestions(1L);
+		dbData.closeDb();
+		adapter = new QuestionsAdapter(this, getCurrentContext(), questions, 1L, dbData);
+		items.setAdapter(adapter);
+		super.onResume();
 	}
+
+
 
 	private void createHeader() {
 		View headerView = getLayoutInflater().inflate(R.layout.activity_questions_header, null);
@@ -120,6 +127,11 @@ public abstract class ListActivity extends Activity {
 			question.setIsNoChecked(checkedNo == 0 ? false : true);
 		}
 		return questions;
+	}
+	
+	public void  refreshQuestions(){
+		Cursor cursor = dbData.getQuestionsFromDB(1l);
+		getQuestionsFromCursor(cursor);
 	}
 	
 	public DbData getDbData() {
