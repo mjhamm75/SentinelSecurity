@@ -72,12 +72,12 @@ public abstract class ListActivity extends Activity {
 
 	@Override
 	protected void onResume() {
+		super.onResume();
 		dbData = getDbData();
 		questions = getQuestions(1L);
 		dbData.closeDb();
 		adapter = new QuestionsAdapter(this, getCurrentContext(), questions, 1L, dbData);
 		items.setAdapter(adapter);
-		super.onResume();
 	}
 
 

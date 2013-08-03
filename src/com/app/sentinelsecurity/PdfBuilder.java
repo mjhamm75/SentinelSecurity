@@ -324,6 +324,7 @@ public class PdfBuilder {
 			rf.setChecked(checked);
 			rf.setBorderColor(GrayColor.GRAYBLACK);
 			rf.setBackgroundColor(GrayColor.GRAYWHITE);
+			rf.setTextColor(GrayColor.GRAYWHITE);
 			rf.setCheckType(RadioCheckField.TYPE_CHECK);
 			parent.addKid(rf.getCheckField());
 		}

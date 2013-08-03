@@ -103,6 +103,7 @@ public class QuestionsAdapter extends ArrayAdapter<Question> {
 		if (question.getIsNoChecked()) {
 			holder.no.setChecked(true);
 		}
+		
 	}
 
 	public void updateQuestion(Question question, Boolean isChecked, String yesOrNo) {

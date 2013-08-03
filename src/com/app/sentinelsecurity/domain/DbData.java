@@ -241,7 +241,7 @@ public class DbData {
 		this.closeDb();
 	}
 
-	private void closeDb() {
+	public void closeDb() {
 		db.close();
 	}
 
