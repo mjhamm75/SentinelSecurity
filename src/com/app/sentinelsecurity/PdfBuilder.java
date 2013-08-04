@@ -50,14 +50,14 @@ public class PdfBuilder {
 
 		writer = PdfWriter.getInstance(getDocument(), new FileOutputStream(file));
 		getDocument().open();
-		addCompanyLogo();
+//		addCompanyLogo();
 
 		addReportHeader();
-		addNotficationSection();
+		addNotficationSection("notify");
 		addSystemTestSection();
 		addSupervisorySection();
 		addMonitoringSection();
-		addNotficationSection();
+		addNotficationSection("notification_resume");
 		addGeneralComments();
 		addReportFooter();
 		getDocument().close();
@@ -137,10 +137,11 @@ public class PdfBuilder {
 		getDocument().add(fifthLine);
 	}
 
-	public void addNotficationSection() throws DocumentException {
+	public void addNotficationSection(String dbColumn) throws DocumentException {
 		String[] rows = { "Building Occupants", "Building Maintainence", "Central Station(s)" };
 		String[] columns = { "", "YES", "NO", "WHO", "TIME" };
-		createFiveColumnChecklist(columns, rows);
+//		String dbColumn = "notification";
+		createFiveColumnChecklist(columns, rows, dbColumn);
 	}
 
 	public void addSystemTestSection() throws DocumentException {
@@ -149,20 +150,23 @@ public class PdfBuilder {
 				"Discharge Test", "Charger Test", "Remote Annunciators", "Notification Appliances",
 				"Speakers/Voice Clarity" };
 		String[] columns = { "TYPE", "VISUAL", "FUNCTIONAL", "COMMENTS" };
-		createFourColumnChecklist(columns, rows, writer);
+		String dbColumn = "system";
+		createFourColumnChecklist(columns, rows, writer, dbColumn);
 	}
 
 	private void addSupervisorySection() throws DocumentException {
 		String[] rows = { "Smoke Detectors", "Pull Stations", "Waterflows", "Tampers", "Duct Detectors",
 				"Heat Detectors", "Others" };
 		String[] columns = { "TYPE", "VISUAL", "FUNCTIONAL", "LOCATION/COMMENT" };
-		createFourColumnChecklist(columns, rows, writer);
+		String dbColumn = "supervisory";
+		createFourColumnChecklist(columns, rows, writer, dbColumn);
 	}
 
 	private void addMonitoringSection() throws DocumentException {
 		String[] rows = { "Alarm Signals/Restore", "Trouble Signal/Restore", "Supervisory" };
 		String[] columns = { "", "YES", "NO", "TIME", "COMMENTS" };
-		createFiveColumnChecklist(columns, rows);
+		String dbColumn = "monitoring";
+		createFiveColumnChecklist(columns, rows, dbColumn);
 	}
 
 	private void addGeneralComments() throws DocumentException {
@@ -179,7 +183,7 @@ public class PdfBuilder {
 		getDocument().add(underline2);
 		getDocument().add(underline2);
 		getDocument().add(underline2);
-		getDocument().add(underline2);
+//		getDocument().add(underline2);
 
 	}
 
@@ -206,29 +210,42 @@ public class PdfBuilder {
 		return smallSpace;
 	}
 
-	private PdfPTable createFourColumnChecklist(String[] columns, String[] rows, PdfWriter writer)
+	private PdfPTable createFourColumnChecklist(String[] columns, String[] rows, PdfWriter writer, String dbColumn)
 			throws DocumentException {
 		PdfPTable table = createTable(new float[] { 2f, 1f, 1f, 4f }, 100f);
 		createTableHeaders(columns, table);
-		createFourColumnBody(rows, table);
+		createFourColumnBody(rows, table, dbColumn);
 		return table;
 	}
 
-	private void createFourColumnBody(String[] rowLabels, PdfPTable table) throws DocumentException {
+	private void createFourColumnBody(String[] rowLabels, PdfPTable table, String dbColumn) throws DocumentException {
 		PdfFormField checkboxGroupField = PdfFormField.createCheckBox(writer);
+		int i = 1;
 		for (String label : rowLabels) {
 			PdfPCell cell = table.getDefaultCell();
 			cell = new PdfPCell(new Paragraph(label));
 			cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+			cell.setBorderWidth(0);
 			table.addCell(cell);
 
+			cursor.moveToFirst();
+			int checkedYes = cursor.getInt(cursor.getColumnIndex(dbColumn + "_" + i + "_y"));
 			cell = new PdfPCell(table.getDefaultCell());
-			cell.setCellEvent(new CellField(writer, checkboxGroupField, true));
+			cell.setCellEvent(new CellField(writer, checkboxGroupField, (checkedYes == 0 ? false : true)));
+			cell.setBorderWidth(0);
 			table.addCell(cell);
+
+			int checkedNo = cursor.getInt(cursor.getColumnIndex(dbColumn + "_" + i + "_n"));
+			cell = new PdfPCell(table.getDefaultCell());
+			cell.setCellEvent(new CellField(writer, checkboxGroupField, (checkedNo == 0 ? false : true)));
+			cell.setBorderWidth(0);
 			table.addCell(cell);
 
 			cell = new PdfPCell(new Paragraph("                    "));
+			cell.setBorderWidth(0);
 			table.addCell(cell);
+
+			i++;
 		}
 
 		getDocument().add(table);
@@ -236,12 +253,12 @@ public class PdfBuilder {
 
 	}
 
-	private PdfPTable createFiveColumnChecklist(String[] columns, String[] rows)
+	private PdfPTable createFiveColumnChecklist(String[] columns, String[] rows, String dbColumn)
 			throws DocumentException {
 		PdfPTable table = createTable(new float[] { 2f, 1f, 1f, 2.5f, 1.5f }, 100f);
 
 		createTableHeaders(columns, table);
-		createFiveColumnBody(rows, table);
+		createFiveColumnBody(rows, table, dbColumn);
 		return table;
 	}
 
@@ -252,23 +269,38 @@ public class PdfBuilder {
 		return table;
 	}
 
-	private void createFiveColumnBody(String[] rowLabels, PdfPTable table) throws DocumentException {
+	private void createFiveColumnBody(String[] rowLabels, PdfPTable table, String dbColumn) throws DocumentException {
 		PdfFormField checkboxGroupField = PdfFormField.createCheckBox(writer);
 		PdfPCell cell = null;
+		int i = 1;
 		for (String label : rowLabels) {
 			cell = new PdfPCell(new Paragraph(label));
 			cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+			cell.setBorderWidth(0);
+			table.addCell(cell);
+			
+			cursor.moveToFirst();
+			int checkedYes = cursor.getInt(cursor.getColumnIndex(dbColumn + "_" + i + "_y"));
+			cell = new PdfPCell(table.getDefaultCell());
+			cell.setCellEvent(new CellField(writer, checkboxGroupField, (checkedYes == 0 ? false : true)));
+			cell.setBorderWidth(0);
 			table.addCell(cell);
 
+			int checkedNo = cursor.getInt(cursor.getColumnIndex(dbColumn + "_" + i + "_n"));
 			cell = new PdfPCell(table.getDefaultCell());
-			cell.setCellEvent(new CellField(writer, checkboxGroupField, true));
-			table.addCell(cell);
+			cell.setCellEvent(new CellField(writer, checkboxGroupField, (checkedNo == 0 ? false : true)));
+			cell.setBorderWidth(0);
 			table.addCell(cell);
 
 			cell = new PdfPCell(new Paragraph("                    "));
+			cell.setBorderWidth(0);
 			table.addCell(cell);
+			
 			cell = new PdfPCell(new Paragraph("                     "));
+			cell.setBorderWidth(0);
 			table.addCell(cell);
+
+			i++;
 		}
 		getDocument().add(table);
 		writer.addAnnotation(checkboxGroupField);
@@ -278,6 +310,7 @@ public class PdfBuilder {
 		PdfPCell cell = null;
 		for (String column : columns) {
 			cell = new PdfPCell(new Paragraph(column));
+			cell.setBorderWidth(0);
 			cell.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table.addCell(cell);
 		}
@@ -324,7 +357,11 @@ public class PdfBuilder {
 			rf.setChecked(checked);
 			rf.setBorderColor(GrayColor.GRAYBLACK);
 			rf.setBackgroundColor(GrayColor.GRAYWHITE);
-			rf.setTextColor(GrayColor.GRAYWHITE);
+			if (checked) {
+				rf.setTextColor(GrayColor.BLACK);
+			} else {
+				rf.setTextColor(GrayColor.GRAYWHITE);
+			}
 			rf.setCheckType(RadioCheckField.TYPE_CHECK);
 			parent.addKid(rf.getCheckField());
 		}
