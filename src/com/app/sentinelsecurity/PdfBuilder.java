@@ -374,8 +374,8 @@ public class PdfBuilder {
 		}
 
 		private void createCheckboxField(Rectangle rect) throws IOException, DocumentException {
-			RadioCheckField rf = new RadioCheckField(writer, new Rectangle(rect.getLeft(2), rect.getBottom(2),
-					rect.getRight(2), rect.getTop(2)), partialFieldName, "");
+			RadioCheckField rf = new RadioCheckField(writer, new Rectangle(rect.getLeft(24), rect.getBottom(2),
+					rect.getRight(24), rect.getTop(2)), partialFieldName, "");
 			rf.setChecked(checked);
 			rf.setBorderColor(GrayColor.GRAYBLACK);
 			rf.setBackgroundColor(GrayColor.GRAYWHITE);
