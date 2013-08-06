@@ -223,7 +223,9 @@ public class PdfBuilder {
 
 	private PdfPTable createFourColumnChecklist(String[] columns, String[] rows, PdfWriter writer, String dbColumn,
 			String sectionTitle) throws DocumentException {
-		Paragraph title = new Paragraph(sectionTitle, NORMAL_BOLD);
+		Chunk t = new Chunk(sectionTitle, NORMAL_BOLD);
+		t.setUnderline(0.1f, -2f);
+		Paragraph title = new Paragraph(t);
 		title.setAlignment(Element.ALIGN_CENTER);
 		getDocument().add(title);
 
@@ -238,7 +240,7 @@ public class PdfBuilder {
 		int i = 1;
 		for (String label : rowLabels) {
 			PdfPCell cell = table.getDefaultCell();
-			cell = new PdfPCell(new Paragraph(label));
+			cell = new PdfPCell(new Paragraph(label, NORMAL));
 			cell.setHorizontalAlignment(Element.ALIGN_LEFT);
 			cell.setBorderWidth(0);
 			table.addCell(cell);
@@ -270,7 +272,9 @@ public class PdfBuilder {
 
 	private PdfPTable createFiveColumnChecklist(String[] columns, String[] rows, String dbColumn, String sectionTitle)
 			throws DocumentException {
-		Paragraph title = new Paragraph(sectionTitle, NORMAL_BOLD);
+		Chunk t = new Chunk(sectionTitle, NORMAL_BOLD);
+		t.setUnderline(0.1f, -2f);
+		Paragraph title = new Paragraph(t);
 		title.setAlignment(Element.ALIGN_CENTER);
 		getDocument().add(title);
 
@@ -292,7 +296,7 @@ public class PdfBuilder {
 		PdfPCell cell = null;
 		int i = 1;
 		for (String label : rowLabels) {
-			cell = new PdfPCell(new Paragraph(label));
+			cell = new PdfPCell(new Paragraph(label, NORMAL));
 			cell.setHorizontalAlignment(Element.ALIGN_LEFT);
 			cell.setBorderWidth(0);
 			table.addCell(cell);
@@ -327,7 +331,7 @@ public class PdfBuilder {
 	private void createTableHeaders(String[] columns, PdfPTable table) {
 		PdfPCell cell = null;
 		for (String column : columns) {
-			cell = new PdfPCell(new Paragraph(column));
+			cell = new PdfPCell(new Paragraph(column, NORMAL_BOLD));
 			cell.setBorderWidth(0);
 			cell.setHorizontalAlignment(Element.ALIGN_CENTER);
 			table.addCell(cell);
