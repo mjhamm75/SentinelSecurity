@@ -50,14 +50,13 @@ public class PdfBuilder {
 
 		writer = PdfWriter.getInstance(getDocument(), new FileOutputStream(file));
 		getDocument().open();
-//		addCompanyLogo();
-
+		// addCompanyLogo();
 		addReportHeader();
-		addNotficationSection("notify");
+		addNotficationSection();
 		addSystemTestSection();
 		addSupervisorySection();
 		addMonitoringSection();
-		addNotficationSection("notification_resume");
+		addNotficationResumeSection();
 		addGeneralComments();
 		addReportFooter();
 		getDocument().close();
@@ -137,11 +136,12 @@ public class PdfBuilder {
 		getDocument().add(fifthLine);
 	}
 
-	public void addNotficationSection(String dbColumn) throws DocumentException {
+	public void addNotficationSection() throws DocumentException {
 		String[] rows = { "Building Occupants", "Building Maintainence", "Central Station(s)" };
 		String[] columns = { "", "YES", "NO", "WHO", "TIME" };
-//		String dbColumn = "notification";
-		createFiveColumnChecklist(columns, rows, dbColumn);
+		String dbColumn = "notify";
+		String sectionTitle = "NOTIFICATIONS BEFORE TESTING";
+		createFiveColumnChecklist(columns, rows, dbColumn, sectionTitle);
 	}
 
 	public void addSystemTestSection() throws DocumentException {
@@ -151,7 +151,8 @@ public class PdfBuilder {
 				"Speakers/Voice Clarity" };
 		String[] columns = { "TYPE", "VISUAL", "FUNCTIONAL", "COMMENTS" };
 		String dbColumn = "system";
-		createFourColumnChecklist(columns, rows, writer, dbColumn);
+		String sectionTitle = "SYSTEM TESTS AND INSPECTION";
+		createFourColumnChecklist(columns, rows, writer, dbColumn, sectionTitle);
 	}
 
 	private void addSupervisorySection() throws DocumentException {
@@ -159,14 +160,24 @@ public class PdfBuilder {
 				"Heat Detectors", "Others" };
 		String[] columns = { "TYPE", "VISUAL", "FUNCTIONAL", "LOCATION/COMMENT" };
 		String dbColumn = "supervisory";
-		createFourColumnChecklist(columns, rows, writer, dbColumn);
+		String sectionTitle = "INITIATING & SUPERVISORY TESTS & INSPECTIONS";
+		createFourColumnChecklist(columns, rows, writer, dbColumn, sectionTitle);
 	}
 
 	private void addMonitoringSection() throws DocumentException {
 		String[] rows = { "Alarm Signals/Restore", "Trouble Signal/Restore", "Supervisory" };
 		String[] columns = { "", "YES", "NO", "TIME", "COMMENTS" };
 		String dbColumn = "monitoring";
-		createFiveColumnChecklist(columns, rows, dbColumn);
+		String sectionTitle = "ARE ALL FIRE EXITS AND AISLES CLEAR AND UNLOCKED AND UNBLOCKED";
+		createFiveColumnChecklist(columns, rows, dbColumn, sectionTitle);
+	}
+
+	private void addNotficationResumeSection() throws DocumentException {
+		String[] rows = { "Building Occupants", "Building Maintainence", "Central Station(s)" };
+		String[] columns = { "", "YES", "NO", "WHO", "TIME" };
+		String dbColumn = "notification_resume";
+		String sectionTitle = "NOTIFICATION THAT TESTING IS COMPLETE";
+		createFiveColumnChecklist(columns, rows, dbColumn, sectionTitle);
 	}
 
 	private void addGeneralComments() throws DocumentException {
@@ -183,7 +194,7 @@ public class PdfBuilder {
 		getDocument().add(underline2);
 		getDocument().add(underline2);
 		getDocument().add(underline2);
-//		getDocument().add(underline2);
+		// getDocument().add(underline2);
 
 	}
 
@@ -210,8 +221,12 @@ public class PdfBuilder {
 		return smallSpace;
 	}
 
-	private PdfPTable createFourColumnChecklist(String[] columns, String[] rows, PdfWriter writer, String dbColumn)
-			throws DocumentException {
+	private PdfPTable createFourColumnChecklist(String[] columns, String[] rows, PdfWriter writer, String dbColumn,
+			String sectionTitle) throws DocumentException {
+		Paragraph title = new Paragraph(sectionTitle, NORMAL_BOLD);
+		title.setAlignment(Element.ALIGN_CENTER);
+		getDocument().add(title);
+
 		PdfPTable table = createTable(new float[] { 2f, 1f, 1f, 4f }, 100f);
 		createTableHeaders(columns, table);
 		createFourColumnBody(rows, table, dbColumn);
@@ -253,10 +268,13 @@ public class PdfBuilder {
 
 	}
 
-	private PdfPTable createFiveColumnChecklist(String[] columns, String[] rows, String dbColumn)
+	private PdfPTable createFiveColumnChecklist(String[] columns, String[] rows, String dbColumn, String sectionTitle)
 			throws DocumentException {
-		PdfPTable table = createTable(new float[] { 2f, 1f, 1f, 2.5f, 1.5f }, 100f);
+		Paragraph title = new Paragraph(sectionTitle, NORMAL_BOLD);
+		title.setAlignment(Element.ALIGN_CENTER);
+		getDocument().add(title);
 
+		PdfPTable table = createTable(new float[] { 2f, 1f, 1f, 2.5f, 1.5f }, 100f);
 		createTableHeaders(columns, table);
 		createFiveColumnBody(rows, table, dbColumn);
 		return table;
@@ -278,7 +296,7 @@ public class PdfBuilder {
 			cell.setHorizontalAlignment(Element.ALIGN_LEFT);
 			cell.setBorderWidth(0);
 			table.addCell(cell);
-			
+
 			cursor.moveToFirst();
 			int checkedYes = cursor.getInt(cursor.getColumnIndex(dbColumn + "_" + i + "_y"));
 			cell = new PdfPCell(table.getDefaultCell());
@@ -295,7 +313,7 @@ public class PdfBuilder {
 			cell = new PdfPCell(new Paragraph("                    "));
 			cell.setBorderWidth(0);
 			table.addCell(cell);
-			
+
 			cell = new PdfPCell(new Paragraph("                     "));
 			cell.setBorderWidth(0);
 			table.addCell(cell);
