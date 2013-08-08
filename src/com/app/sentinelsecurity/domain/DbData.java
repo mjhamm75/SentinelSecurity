@@ -137,7 +137,7 @@ public class DbData {
 					+ "%s text, %s text, %s text, " //
 					+ "%s int, %s int, %s int, " //
 					+ "%s int, %s int, %s int," //
-					+ "%s text, %s text, %s text, " //
+					+ "%s text, %s text, %s text " //
 					+ ")", //
 					
 					TABLE_QUESTION, //
@@ -170,7 +170,7 @@ public class DbData {
 					
 					Q_NOTIFICATION_RESUME_1_NO, Q_NOTIFICATION_RESUME_2_NO, Q_NOTIFICATION_RESUME_3_NO, //
 					
-					Q_NOTIFICATION_RESUME_1_COMMENT, Q_NOTIFICATION_RESUME_1_COMMENT, Q_NOTIFICATION_RESUME_1_COMMENT
+					Q_NOTIFICATION_RESUME_1_COMMENT, Q_NOTIFICATION_RESUME_2_COMMENT, Q_NOTIFICATION_RESUME_3_COMMENT
 					
 					); //
 
@@ -182,7 +182,7 @@ public class DbData {
 		this.context = context;
 		dbHelper = new DbHelper();
 		// db = dbHelper.getWritableDatabase();
-		// dbHelper.onUpgrade(db, 1, 2);
+		// dbHelper.onUpgrade(db, 1, 3);
 	}
 
 	public Long createQuestion() {
@@ -315,7 +315,7 @@ public class DbData {
 
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-			db.execSQL("drop TABLE " + TABLE_QUESTION + ";");
+//			db.execSQL("drop TABLE " + TABLE_QUESTION + ";");
 			onCreate(db);
 		}
 	}
