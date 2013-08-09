@@ -273,6 +273,15 @@ public class DbData {
 		closeDb();
 	}
 
+	public void updateComment(String dbColumn, String comment, Long id) {
+		db = dbHelper.getWritableDatabase();
+		ContentValues values = new ContentValues();
+		values.put(dbColumn, comment);
+		
+		db.update(TABLE_QUESTION, values, BaseColumns._ID + "=" + id, null);
+		closeDb();
+	}
+
 	public Cursor getQuestionsFromDB(Long id) {
 		db = dbHelper.getReadableDatabase();
 		Cursor cursor = db.query(TABLE_QUESTION, null, "_ID = 1", null, null, null, null);

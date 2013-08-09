@@ -34,6 +34,9 @@ public class SingleQuestionActivity extends Activity {
 		back.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				TextView comment = (TextView)findViewById(R.id.question);
+				Question question = (Question)v.getTag();
+				dbData.updateComment(question, comment.getText(), 1L);
 				SingleQuestionActivity.this.finish();
 			}
 		});
@@ -50,7 +53,7 @@ public class SingleQuestionActivity extends Activity {
 					startActivityForResult(intent, 1);
 				} catch (ActivityNotFoundException a) {
 					Toast t = Toast.makeText(getApplicationContext(),
-							"Opps! Your device doesn't support Speech to Text", Toast.LENGTH_SHORT);
+							"Oops! Your device doesn't support Speech to Text", Toast.LENGTH_SHORT);
 					t.show();
 				}
 			}
