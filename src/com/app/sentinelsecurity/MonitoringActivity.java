@@ -23,11 +23,11 @@ public class MonitoringActivity extends ListActivity {
 	protected List<Question> getQuestionsList() {
 		List<Question> questions = new ArrayList<Question>();
 		questions.add(new Question(getResources().getString(R.string.monitoring_1), DbData.Q_MONITORING_1_YES,
-				DbData.Q_MONITORING_1_NO));
+				DbData.Q_MONITORING_1_NO, DbData.Q_MONITORING_1_COMMENT));
 		questions.add(new Question(getResources().getString(R.string.monitoring_2), DbData.Q_MONITORING_2_YES,
-				DbData.Q_MONITORING_2_NO));
+				DbData.Q_MONITORING_2_NO, DbData.Q_MONITORING_2_COMMENT));
 		questions.add(new Question(getResources().getString(R.string.monitoring_3), DbData.Q_MONITORING_3_YES,
-				DbData.Q_MONITORING_3_NO));
+				DbData.Q_MONITORING_3_NO, DbData.Q_MONITORING_3_COMMENT));
 		return questions;
 	}
 

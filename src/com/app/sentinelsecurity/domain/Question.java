@@ -7,16 +7,18 @@ public class Question {
 	String comment;
 	String dbYesColumn;
 	String dbNoColumn;
+	String dbCommentColumn;
 
 	public Question() {
 		isYesChecked = false;
 		isNoChecked = false;
 	}
 
-	public Question(String question, String dbYesColumn, String dbNoColumn) {
+	public Question(String question, String dbYesColumn, String dbNoColumn, String dbCommentColumn) {
 		this.question = question;
 		this.dbYesColumn = dbYesColumn;
 		this.dbNoColumn = dbNoColumn;
+		this.dbCommentColumn = dbCommentColumn;
 		isYesChecked = false;
 		isNoChecked = false;
 	}
@@ -77,4 +79,11 @@ public class Question {
 		this.dbNoColumn = dbNoColumn;
 	}
 
+	public String getDbCommentColumn() {
+		return dbCommentColumn;
+	}
+
+	public void setDbCommentColumn(String dbCommentColumn) {
+		this.dbCommentColumn = dbCommentColumn;
+	}
 }

@@ -277,7 +277,7 @@ public class DbData {
 		db = dbHelper.getWritableDatabase();
 		ContentValues values = new ContentValues();
 		values.put(dbColumn, comment);
-		
+		System.out.println("");
 		db.update(TABLE_QUESTION, values, BaseColumns._ID + "=" + id, null);
 		closeDb();
 	}

@@ -47,9 +47,12 @@ public class NotificationActivity extends ListActivity {
 	@Override
 	protected List<Question> getQuestionsList() {
 		List<Question> questions = new ArrayList<Question>();
-		questions.add(new Question(getResources().getString(R.string.notification_1), DbData.Q_NOTIFY_1_YES, DbData.Q_NOTIFY_1_NO));
-		questions.add(new Question(getResources().getString(R.string.notification_2), DbData.Q_NOTIFY_2_YES, DbData.Q_NOTIFY_2_NO));
-		questions.add(new Question(getResources().getString(R.string.notification_3), DbData.Q_NOTIFY_3_YES, DbData.Q_NOTIFY_3_NO));
+		questions.add(new Question(getResources().getString(R.string.notification_1), DbData.Q_NOTIFY_1_YES,
+				DbData.Q_NOTIFY_1_NO, DbData.Q_NOTIFY_1_COMMENT));
+		questions.add(new Question(getResources().getString(R.string.notification_2), DbData.Q_NOTIFY_2_YES,
+				DbData.Q_NOTIFY_2_NO, DbData.Q_NOTIFY_2_COMMENT));
+		questions.add(new Question(getResources().getString(R.string.notification_3), DbData.Q_NOTIFY_3_YES,
+				DbData.Q_NOTIFY_3_NO, DbData.Q_NOTIFY_3_COMMENT));
 		return questions;
 	}
 }

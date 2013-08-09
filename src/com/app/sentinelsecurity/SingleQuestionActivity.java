@@ -34,9 +34,9 @@ public class SingleQuestionActivity extends Activity {
 		back.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				TextView comment = (TextView)findViewById(R.id.question);
-				Question question = (Question)v.getTag();
-				dbData.updateComment(question, comment.getText(), 1L);
+				Question question = (Question) v.getTag();
+				TextView comment = (TextView) findViewById(R.id.question);
+				dbData.updateComment(question.getDbCommentColumn(), comment.getText().toString(), 1L);
 				SingleQuestionActivity.this.finish();
 			}
 		});
@@ -108,7 +108,7 @@ public class SingleQuestionActivity extends Activity {
 	public void updateQuestion(Question question, Boolean isChecked, String yesOrNo) {
 		if (yesOrNo.equals("no")) {
 			dbData.updateQuestion(getIntent().getStringExtra("dbNoColumn"), isChecked, 1L);
-			
+
 		} else {
 			dbData.updateQuestion(getIntent().getStringExtra("dbYesColumn"), isChecked, 1L);
 		}

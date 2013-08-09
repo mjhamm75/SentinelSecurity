@@ -18,17 +18,24 @@ public class SupervisoryActivity extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 	}
-	
+
 	@Override
 	protected List<Question> getQuestionsList() {
 		List<Question> questions = new ArrayList<Question>();
-		questions.add(new Question(getResources().getString(R.string.supervisory_1), DbData.Q_SUPERVISORY_1_YES, DbData.Q_SUPERVISORY_1_NO));
-		questions.add(new Question(getResources().getString(R.string.supervisory_2), DbData.Q_SUPERVISORY_2_YES, DbData.Q_SUPERVISORY_2_NO));
-		questions.add(new Question(getResources().getString(R.string.supervisory_3), DbData.Q_SUPERVISORY_3_YES, DbData.Q_SUPERVISORY_3_NO));
-		questions.add(new Question(getResources().getString(R.string.supervisory_4), DbData.Q_SUPERVISORY_4_YES, DbData.Q_SUPERVISORY_4_NO));
-		questions.add(new Question(getResources().getString(R.string.supervisory_5), DbData.Q_SUPERVISORY_5_YES, DbData.Q_SUPERVISORY_5_NO));
-		questions.add(new Question(getResources().getString(R.string.supervisory_6), DbData.Q_SUPERVISORY_6_YES, DbData.Q_SUPERVISORY_6_NO));
-		questions.add(new Question(getResources().getString(R.string.supervisory_7), DbData.Q_SUPERVISORY_7_YES, DbData.Q_SUPERVISORY_7_NO));
+		questions.add(new Question(getResources().getString(R.string.supervisory_1), DbData.Q_SUPERVISORY_1_YES,
+				DbData.Q_SUPERVISORY_1_NO, DbData.Q_SUPERVISORY_1_COMMENT));
+		questions.add(new Question(getResources().getString(R.string.supervisory_2), DbData.Q_SUPERVISORY_2_YES,
+				DbData.Q_SUPERVISORY_2_NO, DbData.Q_SUPERVISORY_2_COMMENT));
+		questions.add(new Question(getResources().getString(R.string.supervisory_3), DbData.Q_SUPERVISORY_3_YES,
+				DbData.Q_SUPERVISORY_3_NO, DbData.Q_SUPERVISORY_3_COMMENT));
+		questions.add(new Question(getResources().getString(R.string.supervisory_4), DbData.Q_SUPERVISORY_4_YES,
+				DbData.Q_SUPERVISORY_4_NO, DbData.Q_SUPERVISORY_4_COMMENT));
+		questions.add(new Question(getResources().getString(R.string.supervisory_5), DbData.Q_SUPERVISORY_5_YES,
+				DbData.Q_SUPERVISORY_5_NO, DbData.Q_SUPERVISORY_5_COMMENT));
+		questions.add(new Question(getResources().getString(R.string.supervisory_6), DbData.Q_SUPERVISORY_6_YES,
+				DbData.Q_SUPERVISORY_6_NO, DbData.Q_SUPERVISORY_6_COMMENT));
+		questions.add(new Question(getResources().getString(R.string.supervisory_7), DbData.Q_SUPERVISORY_7_YES,
+				DbData.Q_SUPERVISORY_7_NO, DbData.Q_SUPERVISORY_7_COMMENT));
 		return questions;
 	}
 
