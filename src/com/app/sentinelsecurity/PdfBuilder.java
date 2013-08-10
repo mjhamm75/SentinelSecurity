@@ -261,9 +261,9 @@ public class PdfBuilder {
 			cursor.moveToFirst();
 			String comment = cursor.getString(cursor.getColumnIndex(dbColumn + "_" + i + "_comment"));
 			if (comment != null) {
-				cell = new PdfPCell(new Paragraph("                    "));
-			} else {
 				cell = new PdfPCell(new Paragraph(comment));
+			} else {
+				cell = new PdfPCell(new Paragraph("                    "));
 			}
 			cell.setBorderWidth(0);
 			table.addCell(cell);
