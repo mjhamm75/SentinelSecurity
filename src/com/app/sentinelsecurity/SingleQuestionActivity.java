@@ -34,9 +34,10 @@ public class SingleQuestionActivity extends Activity {
 		back.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Question question = (Question) v.getTag();
-				TextView comment = (TextView) findViewById(R.id.question);
-				dbData.updateComment(question.getDbCommentColumn(), comment.getText().toString(), 1L);
+				Intent intent = getIntent();
+				String commentColumn = intent.getStringExtra("dbCommentColumn");
+				TextView comment = (TextView) findViewById(R.id.comment);
+				dbData.updateComment(commentColumn, comment.getText().toString(), 1L);
 				SingleQuestionActivity.this.finish();
 			}
 		});
@@ -102,6 +103,7 @@ public class SingleQuestionActivity extends Activity {
 		no.setOnCheckedChangeListener(listen);
 
 		setQuestionText();
+		setCommentText();
 		setCheckboxesStatus(yes, no);
 	}
 
@@ -129,6 +131,13 @@ public class SingleQuestionActivity extends Activity {
 		Intent i = getIntent();
 		TextView question = (TextView) findViewById(R.id.question);
 		question.setText(i.getStringExtra("question"));
+	}
+	
+	private void setCommentText() {
+		Intent i = getIntent();
+		String dbCommentColumn = i.getStringExtra("dbCommentColumn");
+		EditText comment = (EditText) findViewById(R.id.comment);
+		comment.setText(dbData.getComment(dbCommentColumn, 1L));
 	}
 
 	@Override

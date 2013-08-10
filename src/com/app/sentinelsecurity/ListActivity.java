@@ -64,6 +64,7 @@ public abstract class ListActivity extends Activity {
 				i.putExtra("noChecked", item.getIsNoChecked());
 				i.putExtra("dbYesColumn", item.getDbYesColumn());
 				i.putExtra("dbNoColumn", item.getDbNoColumn());
+				i.putExtra("dbCommentColumn", item.getDbCommentColumn());
 				startActivity(i);
 			}
 		});

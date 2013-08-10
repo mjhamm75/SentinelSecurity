@@ -132,47 +132,84 @@ public class DbData {
 					+ "%s int, %s int, %s int, %s int, %s int, %s int, %s int, " //
 					+ "%s int, %s int, %s int, %s int, %s int, %s int, %s int, " //
 					+ "%s text, %s text, %s text, %s text, %s text, %s text, %s text," //
-					+ "%s int, %s int, %s int, " // 
+					+ "%s int, %s int, %s int, " //
 					+ "%s int, %s int, %s int, " //
 					+ "%s text, %s text, %s text, " //
 					+ "%s int, %s int, %s int, " //
 					+ "%s int, %s int, %s int," //
 					+ "%s text, %s text, %s text " //
 					+ ")", //
-					
+
 					TABLE_QUESTION, //
 
-					Q_ID, Q_NOTIFY_1_YES, Q_NOTIFY_2_YES, Q_NOTIFY_3_YES, // 
-					
-					Q_NOTIFY_1_NO, Q_NOTIFY_2_NO, Q_NOTIFY_3_NO, //
+					Q_ID,
+					Q_NOTIFY_1_YES,
+					Q_NOTIFY_2_YES,
+					Q_NOTIFY_3_YES, //
 
-					Q_NOTIFY_1_COMMENT, Q_NOTIFY_2_COMMENT, Q_NOTIFY_3_COMMENT, //
+					Q_NOTIFY_1_NO,
+					Q_NOTIFY_2_NO,
+					Q_NOTIFY_3_NO, //
 
-					Q_SYSTEM_1_YES, Q_SYSTEM_2_YES, Q_SYSTEM_3_YES, Q_SYSTEM_4_YES, Q_SYSTEM_5_YES, Q_SYSTEM_6_YES, Q_SYSTEM_7_YES, Q_SYSTEM_8_YES, Q_SYSTEM_9_YES, Q_SYSTEM_10_YES, Q_SYSTEM_11_YES, Q_SYSTEM_12_YES, Q_SYSTEM_13_YES, Q_SYSTEM_14_YES, // 
-					
-					Q_SYSTEM_1_NO, Q_SYSTEM_2_NO, Q_SYSTEM_3_NO, Q_SYSTEM_4_NO, Q_SYSTEM_5_NO, Q_SYSTEM_6_NO, Q_SYSTEM_7_NO, Q_SYSTEM_8_NO, Q_SYSTEM_9_NO, Q_SYSTEM_10_NO, Q_SYSTEM_11_NO, Q_SYSTEM_12_NO, Q_SYSTEM_13_NO, Q_SYSTEM_14_NO, // 
-					
-					Q_SYSTEM_1_COMMENT, Q_SYSTEM_2_COMMENT, Q_SYSTEM_3_COMMENT, Q_SYSTEM_4_COMMENT, Q_SYSTEM_5_COMMENT, Q_SYSTEM_6_COMMENT, Q_SYSTEM_7_COMMENT, Q_SYSTEM_8_COMMENT, Q_SYSTEM_9_COMMENT, Q_SYSTEM_10_COMMENT, Q_SYSTEM_11_COMMENT, Q_SYSTEM_12_COMMENT, Q_SYSTEM_13_COMMENT, Q_SYSTEM_14_COMMENT, //
-					
-					Q_SUPERVISORY_1_YES, Q_SUPERVISORY_2_YES, Q_SUPERVISORY_3_YES, Q_SUPERVISORY_4_YES, Q_SUPERVISORY_5_YES, Q_SUPERVISORY_6_YES, Q_SUPERVISORY_7_YES, //
+					Q_NOTIFY_1_COMMENT,
+					Q_NOTIFY_2_COMMENT,
+					Q_NOTIFY_3_COMMENT, //
 
-					Q_SUPERVISORY_1_NO, Q_SUPERVISORY_2_NO, Q_SUPERVISORY_3_NO, Q_SUPERVISORY_4_NO, Q_SUPERVISORY_5_NO, Q_SUPERVISORY_6_NO, Q_SUPERVISORY_7_NO, //
-					
-					Q_SUPERVISORY_1_COMMENT, Q_SUPERVISORY_2_COMMENT, Q_SUPERVISORY_3_COMMENT, Q_SUPERVISORY_4_COMMENT, Q_SUPERVISORY_5_COMMENT, Q_SUPERVISORY_6_COMMENT, Q_SUPERVISORY_7_COMMENT, // 
-					
+					Q_SYSTEM_1_YES, Q_SYSTEM_2_YES, Q_SYSTEM_3_YES, Q_SYSTEM_4_YES,
+					Q_SYSTEM_5_YES,
+					Q_SYSTEM_6_YES,
+					Q_SYSTEM_7_YES,
+					Q_SYSTEM_8_YES,
+					Q_SYSTEM_9_YES,
+					Q_SYSTEM_10_YES,
+					Q_SYSTEM_11_YES,
+					Q_SYSTEM_12_YES,
+					Q_SYSTEM_13_YES,
+					Q_SYSTEM_14_YES, //
+
+					Q_SYSTEM_1_NO, Q_SYSTEM_2_NO, Q_SYSTEM_3_NO, Q_SYSTEM_4_NO, Q_SYSTEM_5_NO, Q_SYSTEM_6_NO,
+					Q_SYSTEM_7_NO,
+					Q_SYSTEM_8_NO,
+					Q_SYSTEM_9_NO,
+					Q_SYSTEM_10_NO,
+					Q_SYSTEM_11_NO,
+					Q_SYSTEM_12_NO,
+					Q_SYSTEM_13_NO,
+					Q_SYSTEM_14_NO, //
+
+					Q_SYSTEM_1_COMMENT, Q_SYSTEM_2_COMMENT, Q_SYSTEM_3_COMMENT, Q_SYSTEM_4_COMMENT, Q_SYSTEM_5_COMMENT,
+					Q_SYSTEM_6_COMMENT, Q_SYSTEM_7_COMMENT, Q_SYSTEM_8_COMMENT, Q_SYSTEM_9_COMMENT,
+					Q_SYSTEM_10_COMMENT,
+					Q_SYSTEM_11_COMMENT,
+					Q_SYSTEM_12_COMMENT,
+					Q_SYSTEM_13_COMMENT,
+					Q_SYSTEM_14_COMMENT, //
+
+					Q_SUPERVISORY_1_YES, Q_SUPERVISORY_2_YES, Q_SUPERVISORY_3_YES, Q_SUPERVISORY_4_YES,
+					Q_SUPERVISORY_5_YES,
+					Q_SUPERVISORY_6_YES,
+					Q_SUPERVISORY_7_YES, //
+
+					Q_SUPERVISORY_1_NO, Q_SUPERVISORY_2_NO, Q_SUPERVISORY_3_NO, Q_SUPERVISORY_4_NO, Q_SUPERVISORY_5_NO,
+					Q_SUPERVISORY_6_NO,
+					Q_SUPERVISORY_7_NO, //
+
+					Q_SUPERVISORY_1_COMMENT, Q_SUPERVISORY_2_COMMENT, Q_SUPERVISORY_3_COMMENT, Q_SUPERVISORY_4_COMMENT,
+					Q_SUPERVISORY_5_COMMENT, Q_SUPERVISORY_6_COMMENT, Q_SUPERVISORY_7_COMMENT, //
+
 					Q_MONITORING_1_YES, Q_MONITORING_2_YES, Q_MONITORING_3_YES, //
 
 					Q_MONITORING_1_NO, Q_MONITORING_2_NO, Q_MONITORING_3_NO, //
-					
-					Q_MONITORING_1_COMMENT, Q_MONITORING_2_COMMENT, Q_MONITORING_3_COMMENT, 
-					
-					Q_NOTIFICATION_RESUME_1_YES, Q_NOTIFICATION_RESUME_2_YES, Q_NOTIFICATION_RESUME_3_YES, // 
-					
+
+					Q_MONITORING_1_COMMENT, Q_MONITORING_2_COMMENT, Q_MONITORING_3_COMMENT,
+
+					Q_NOTIFICATION_RESUME_1_YES, Q_NOTIFICATION_RESUME_2_YES, Q_NOTIFICATION_RESUME_3_YES, //
+
 					Q_NOTIFICATION_RESUME_1_NO, Q_NOTIFICATION_RESUME_2_NO, Q_NOTIFICATION_RESUME_3_NO, //
-					
+
 					Q_NOTIFICATION_RESUME_1_COMMENT, Q_NOTIFICATION_RESUME_2_COMMENT, Q_NOTIFICATION_RESUME_3_COMMENT
-					
-					); //
+
+			); //
 
 	Context context;
 	DbHelper dbHelper;
@@ -277,7 +314,6 @@ public class DbData {
 		db = dbHelper.getWritableDatabase();
 		ContentValues values = new ContentValues();
 		values.put(dbColumn, comment);
-		System.out.println("");
 		db.update(TABLE_QUESTION, values, BaseColumns._ID + "=" + id, null);
 		closeDb();
 	}
@@ -286,6 +322,15 @@ public class DbData {
 		db = dbHelper.getReadableDatabase();
 		Cursor cursor = db.query(TABLE_QUESTION, null, "_ID = 1", null, null, null, null);
 		return cursor;
+	}
+
+	public String getComment(String dbCommentColumn, Long id) {
+		db = dbHelper.getReadableDatabase();
+		Cursor cursor = db.rawQuery("Select " + dbCommentColumn + " from question where _id=?",
+				new String[] { String.valueOf(id) });
+		cursor.moveToFirst();
+		String comment = cursor.getString(cursor.getColumnIndex(dbCommentColumn));
+		return comment;
 	}
 
 	public void insertQuestions(Map<String, Question> questions) {
@@ -324,7 +369,7 @@ public class DbData {
 
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-//			db.execSQL("drop TABLE " + TABLE_QUESTION + ";");
+			// db.execSQL("drop TABLE " + TABLE_QUESTION + ";");
 			onCreate(db);
 		}
 	}
