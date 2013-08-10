@@ -26,7 +26,7 @@ public abstract class ListActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		dbData = getDbData();
-		dbData.createQuestion();
+		// dbData.createQuestion();
 		questions = getQuestions(1L);
 		dbData.closeDb();
 		setContentView(R.layout.activity_questions);

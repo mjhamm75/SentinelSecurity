@@ -326,8 +326,11 @@ public class DbData {
 
 	public String getComment(String dbCommentColumn, Long id) {
 		db = dbHelper.getReadableDatabase();
-		Cursor cursor = db.rawQuery("Select " + dbCommentColumn + " from question where _id=?",
-				new String[] { String.valueOf(id) });
+		// Cursor cursor = db.query(TABLE_QUESTION, new String[] {
+		// dbCommentColumn }, "_id",
+		// new String[] { String.valueOf(id) }, null, null, null);
+		String query = "Select " + dbCommentColumn + " from question where _id = " + String.valueOf(id);
+		Cursor cursor = db.rawQuery(query, null);
 		cursor.moveToFirst();
 		String comment = cursor.getString(cursor.getColumnIndex(dbCommentColumn));
 		return comment;
