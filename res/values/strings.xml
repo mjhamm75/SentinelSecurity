@@ -37,5 +37,11 @@
     <string name="back">Back</string>
     <string name="next">Next</string>
     <string name="comment">Enter comment about question here</string>
+    <string name="button_new_report">Create New Report</string>
+    <string name="button_edit_report">Choose Report to Edit</string>
+    <string name="create_report">Create Report</string>
+    <string name="cancel">Cancel</string>
+    <string name="report_date">Report Date</string>
+    <string name="report_name">Report Name</string>
 
 </resources>
