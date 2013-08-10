@@ -67,11 +67,11 @@ public class DbData {
 	public static final String Q_SYSTEM_7_COMMENT = "system_7_comment";
 	public static final String Q_SYSTEM_8_COMMENT = "system_8_comment";
 	public static final String Q_SYSTEM_9_COMMENT = "system_9_comment";
-	public static final String Q_SYSTEM_10_COMMENT = "system_10commentn";
-	public static final String Q_SYSTEM_11_COMMENT = "system_11commentn";
-	public static final String Q_SYSTEM_12_COMMENT = "system_12commentn";
-	public static final String Q_SYSTEM_13_COMMENT = "system_13commentn";
-	public static final String Q_SYSTEM_14_COMMENT = "system_14commentn";
+	public static final String Q_SYSTEM_10_COMMENT = "system_10_comment";
+	public static final String Q_SYSTEM_11_COMMENT = "system_11_comment";
+	public static final String Q_SYSTEM_12_COMMENT = "system_12_comment";
+	public static final String Q_SYSTEM_13_COMMENT = "system_13_comment";
+	public static final String Q_SYSTEM_14_COMMENT = "system_14_comment";
 
 	public static final String Q_SUPERVISORY_1_YES = "supervisory_1_y";
 	public static final String Q_SUPERVISORY_2_YES = "supervisory_2_y";
@@ -219,7 +219,7 @@ public class DbData {
 		this.context = context;
 		dbHelper = new DbHelper();
 		// db = dbHelper.getWritableDatabase();
-		// dbHelper.onUpgrade(db, 1, 3);
+		// dbHelper.onUpgrade(db, 1, 4);
 	}
 
 	public Long createQuestion() {
@@ -326,9 +326,6 @@ public class DbData {
 
 	public String getComment(String dbCommentColumn, Long id) {
 		db = dbHelper.getReadableDatabase();
-		// Cursor cursor = db.query(TABLE_QUESTION, new String[] {
-		// dbCommentColumn }, "_id",
-		// new String[] { String.valueOf(id) }, null, null, null);
 		String query = "Select " + dbCommentColumn + " from question where _id = " + String.valueOf(id);
 		Cursor cursor = db.rawQuery(query, null);
 		cursor.moveToFirst();
@@ -372,7 +369,7 @@ public class DbData {
 
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-			// db.execSQL("drop TABLE " + TABLE_QUESTION + ";");
+			db.execSQL("drop TABLE " + TABLE_QUESTION + ";");
 			onCreate(db);
 		}
 	}
